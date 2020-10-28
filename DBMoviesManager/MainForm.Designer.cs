@@ -53,9 +53,9 @@
             this.modifyMemberButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveExitButton = new System.Windows.Forms.Button();
-            this.nameLabel = new System.Windows.Forms.Label();
+            this.memberNameLabel = new System.Windows.Forms.Label();
             this.dobLabel = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.memberNameTextBox = new System.Windows.Forms.TextBox();
             this.dobTextBox = new System.Windows.Forms.TextBox();
             this.ypeLabel = new System.Windows.Forms.Label();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
@@ -66,6 +66,14 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.addLabel = new System.Windows.Forms.Label();
             this.addComboBox = new System.Windows.Forms.ComboBox();
+            this.genreNameTextBox = new System.Windows.Forms.TextBox();
+            this.genreNameLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.deleteGenreButton = new System.Windows.Forms.Button();
+            this.modifyGenreButton = new System.Windows.Forms.Button();
+            this.addGenreButton = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +81,7 @@
             // 
             this.searchLabel.AutoSize = true;
             this.searchLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchLabel.Location = new System.Drawing.Point(544, 483);
+            this.searchLabel.Location = new System.Drawing.Point(496, 483);
             this.searchLabel.Name = "searchLabel";
             this.searchLabel.Size = new System.Drawing.Size(152, 17);
             this.searchLabel.TabIndex = 77;
@@ -82,7 +90,7 @@
             // movieListView
             // 
             this.movieListView.HideSelection = false;
-            this.movieListView.Location = new System.Drawing.Point(538, 54);
+            this.movieListView.Location = new System.Drawing.Point(490, 54);
             this.movieListView.Name = "movieListView";
             this.movieListView.Size = new System.Drawing.Size(434, 400);
             this.movieListView.TabIndex = 76;
@@ -90,7 +98,7 @@
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(806, 476);
+            this.searchButton.Location = new System.Drawing.Point(758, 476);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(112, 31);
             this.searchButton.TabIndex = 75;
@@ -99,7 +107,7 @@
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(538, 480);
+            this.searchTextBox.Location = new System.Drawing.Point(490, 480);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(262, 22);
             this.searchTextBox.TabIndex = 74;
@@ -116,7 +124,7 @@
             "Animation",
             "History",
             "Adventure"});
-            this.showGenreComboBox.Location = new System.Drawing.Point(826, 15);
+            this.showGenreComboBox.Location = new System.Drawing.Point(778, 15);
             this.showGenreComboBox.Name = "showGenreComboBox";
             this.showGenreComboBox.Size = new System.Drawing.Size(146, 24);
             this.showGenreComboBox.TabIndex = 63;
@@ -124,7 +132,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(768, 18);
+            this.label7.Location = new System.Drawing.Point(720, 18);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 17);
             this.label7.TabIndex = 62;
@@ -132,7 +140,7 @@
             // 
             // deleteMovieButton
             // 
-            this.deleteMovieButton.Location = new System.Drawing.Point(105, 388);
+            this.deleteMovieButton.Location = new System.Drawing.Point(91, 388);
             this.deleteMovieButton.Name = "deleteMovieButton";
             this.deleteMovieButton.Size = new System.Drawing.Size(146, 33);
             this.deleteMovieButton.TabIndex = 55;
@@ -141,7 +149,7 @@
             // 
             // modifyMovieButton
             // 
-            this.modifyMovieButton.Location = new System.Drawing.Point(105, 348);
+            this.modifyMovieButton.Location = new System.Drawing.Point(91, 348);
             this.modifyMovieButton.Name = "modifyMovieButton";
             this.modifyMovieButton.Size = new System.Drawing.Size(146, 34);
             this.modifyMovieButton.TabIndex = 54;
@@ -150,7 +158,7 @@
             // 
             // addMovieButton
             // 
-            this.addMovieButton.Location = new System.Drawing.Point(105, 309);
+            this.addMovieButton.Location = new System.Drawing.Point(91, 309);
             this.addMovieButton.Name = "addMovieButton";
             this.addMovieButton.Size = new System.Drawing.Size(146, 33);
             this.addMovieButton.TabIndex = 53;
@@ -167,7 +175,7 @@
             "Family",
             "Horror",
             "All"});
-            this.showMemberComboBox.Location = new System.Drawing.Point(602, 15);
+            this.showMemberComboBox.Location = new System.Drawing.Point(554, 15);
             this.showMemberComboBox.Name = "showMemberComboBox";
             this.showMemberComboBox.Size = new System.Drawing.Size(146, 24);
             this.showMemberComboBox.TabIndex = 99;
@@ -175,7 +183,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(535, 18);
+            this.label4.Location = new System.Drawing.Point(487, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 17);
             this.label4.TabIndex = 98;
@@ -184,7 +192,7 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(28, 96);
+            this.titleLabel.Location = new System.Drawing.Point(14, 96);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(39, 17);
             this.titleLabel.TabIndex = 57;
@@ -193,7 +201,7 @@
             // yearLabel
             // 
             this.yearLabel.AutoSize = true;
-            this.yearLabel.Location = new System.Drawing.Point(28, 131);
+            this.yearLabel.Location = new System.Drawing.Point(14, 131);
             this.yearLabel.Name = "yearLabel";
             this.yearLabel.Size = new System.Drawing.Size(42, 17);
             this.yearLabel.TabIndex = 58;
@@ -202,7 +210,7 @@
             // lengthLabel
             // 
             this.lengthLabel.AutoSize = true;
-            this.lengthLabel.Location = new System.Drawing.Point(19, 168);
+            this.lengthLabel.Location = new System.Drawing.Point(5, 168);
             this.lengthLabel.Name = "lengthLabel";
             this.lengthLabel.Size = new System.Drawing.Size(67, 34);
             this.lengthLabel.TabIndex = 59;
@@ -212,7 +220,7 @@
             // ratingLabel
             // 
             this.ratingLabel.AutoSize = true;
-            this.ratingLabel.Location = new System.Drawing.Point(27, 207);
+            this.ratingLabel.Location = new System.Drawing.Point(13, 207);
             this.ratingLabel.Name = "ratingLabel";
             this.ratingLabel.Size = new System.Drawing.Size(53, 17);
             this.ratingLabel.TabIndex = 61;
@@ -220,28 +228,28 @@
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(105, 93);
+            this.titleTextBox.Location = new System.Drawing.Point(91, 93);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(146, 22);
             this.titleTextBox.TabIndex = 64;
             // 
             // yearTextBox
             // 
-            this.yearTextBox.Location = new System.Drawing.Point(105, 131);
+            this.yearTextBox.Location = new System.Drawing.Point(91, 131);
             this.yearTextBox.Name = "yearTextBox";
             this.yearTextBox.Size = new System.Drawing.Size(146, 22);
             this.yearTextBox.TabIndex = 65;
             // 
             // lengthTextBox
             // 
-            this.lengthTextBox.Location = new System.Drawing.Point(105, 168);
+            this.lengthTextBox.Location = new System.Drawing.Point(91, 168);
             this.lengthTextBox.Name = "lengthTextBox";
             this.lengthTextBox.Size = new System.Drawing.Size(146, 22);
             this.lengthTextBox.TabIndex = 66;
             // 
             // ratingTextBox
             // 
-            this.ratingTextBox.Location = new System.Drawing.Point(105, 204);
+            this.ratingTextBox.Location = new System.Drawing.Point(91, 204);
             this.ratingTextBox.Name = "ratingTextBox";
             this.ratingTextBox.Size = new System.Drawing.Size(146, 22);
             this.ratingTextBox.TabIndex = 68;
@@ -249,7 +257,7 @@
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
-            this.imageLabel.Location = new System.Drawing.Point(27, 243);
+            this.imageLabel.Location = new System.Drawing.Point(13, 243);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(50, 17);
             this.imageLabel.TabIndex = 70;
@@ -258,14 +266,14 @@
             // 
             // imageTextBox
             // 
-            this.imageTextBox.Location = new System.Drawing.Point(105, 241);
+            this.imageTextBox.Location = new System.Drawing.Point(91, 241);
             this.imageTextBox.Name = "imageTextBox";
             this.imageTextBox.Size = new System.Drawing.Size(146, 22);
             this.imageTextBox.TabIndex = 71;
             // 
             // addMemberButton
             // 
-            this.addMemberButton.Location = new System.Drawing.Point(357, 309);
+            this.addMemberButton.Location = new System.Drawing.Point(328, 157);
             this.addMemberButton.Name = "addMemberButton";
             this.addMemberButton.Size = new System.Drawing.Size(146, 33);
             this.addMemberButton.TabIndex = 78;
@@ -274,7 +282,7 @@
             // 
             // modifyMemberButton
             // 
-            this.modifyMemberButton.Location = new System.Drawing.Point(357, 348);
+            this.modifyMemberButton.Location = new System.Drawing.Point(328, 196);
             this.modifyMemberButton.Name = "modifyMemberButton";
             this.modifyMemberButton.Size = new System.Drawing.Size(146, 34);
             this.modifyMemberButton.TabIndex = 79;
@@ -283,7 +291,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(357, 388);
+            this.deleteButton.Location = new System.Drawing.Point(328, 236);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(146, 33);
             this.deleteButton.TabIndex = 80;
@@ -292,42 +300,42 @@
             // 
             // saveExitButton
             // 
-            this.saveExitButton.Location = new System.Drawing.Point(1149, 469);
+            this.saveExitButton.Location = new System.Drawing.Point(1390, 469);
             this.saveExitButton.Name = "saveExitButton";
             this.saveExitButton.Size = new System.Drawing.Size(146, 31);
             this.saveExitButton.TabIndex = 81;
             this.saveExitButton.Text = "Save and exit";
             this.saveExitButton.UseVisualStyleBackColor = true;
             // 
-            // nameLabel
+            // memberNameLabel
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(280, 96);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(49, 17);
-            this.nameLabel.TabIndex = 82;
-            this.nameLabel.Text = "Name:";
+            this.memberNameLabel.AutoSize = true;
+            this.memberNameLabel.Location = new System.Drawing.Point(251, 57);
+            this.memberNameLabel.Name = "memberNameLabel";
+            this.memberNameLabel.Size = new System.Drawing.Size(49, 17);
+            this.memberNameLabel.TabIndex = 82;
+            this.memberNameLabel.Text = "Name:";
             // 
             // dobLabel
             // 
             this.dobLabel.AutoSize = true;
-            this.dobLabel.Location = new System.Drawing.Point(276, 127);
+            this.dobLabel.Location = new System.Drawing.Point(247, 88);
             this.dobLabel.Name = "dobLabel";
             this.dobLabel.Size = new System.Drawing.Size(56, 34);
             this.dobLabel.TabIndex = 83;
             this.dobLabel.Text = "Date\r\nof birth:";
             this.dobLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // nameTextBox
+            // memberNameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(357, 93);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(146, 22);
-            this.nameTextBox.TabIndex = 87;
+            this.memberNameTextBox.Location = new System.Drawing.Point(328, 54);
+            this.memberNameTextBox.Name = "memberNameTextBox";
+            this.memberNameTextBox.Size = new System.Drawing.Size(146, 22);
+            this.memberNameTextBox.TabIndex = 87;
             // 
             // dobTextBox
             // 
-            this.dobTextBox.Location = new System.Drawing.Point(357, 131);
+            this.dobTextBox.Location = new System.Drawing.Point(328, 92);
             this.dobTextBox.Name = "dobTextBox";
             this.dobTextBox.Size = new System.Drawing.Size(146, 22);
             this.dobTextBox.TabIndex = 88;
@@ -335,7 +343,7 @@
             // ypeLabel
             // 
             this.ypeLabel.AutoSize = true;
-            this.ypeLabel.Location = new System.Drawing.Point(280, 168);
+            this.ypeLabel.Location = new System.Drawing.Point(251, 129);
             this.ypeLabel.Name = "ypeLabel";
             this.ypeLabel.Size = new System.Drawing.Size(44, 17);
             this.ypeLabel.TabIndex = 94;
@@ -349,7 +357,7 @@
             "Director",
             "Producer",
             "Director of photography"});
-            this.typeComboBox.Location = new System.Drawing.Point(357, 165);
+            this.typeComboBox.Location = new System.Drawing.Point(328, 126);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(146, 24);
             this.typeComboBox.TabIndex = 95;
@@ -357,7 +365,7 @@
             // genreLabel
             // 
             this.genreLabel.AutoSize = true;
-            this.genreLabel.Location = new System.Drawing.Point(28, 57);
+            this.genreLabel.Location = new System.Drawing.Point(14, 57);
             this.genreLabel.Name = "genreLabel";
             this.genreLabel.Size = new System.Drawing.Size(52, 17);
             this.genreLabel.TabIndex = 96;
@@ -374,7 +382,7 @@
             "Animation",
             "History",
             "Adventure"});
-            this.genreComboBox.Location = new System.Drawing.Point(105, 54);
+            this.genreComboBox.Location = new System.Drawing.Point(91, 54);
             this.genreComboBox.Name = "genreComboBox";
             this.genreComboBox.Size = new System.Drawing.Size(146, 24);
             this.genreComboBox.TabIndex = 97;
@@ -382,7 +390,7 @@
             // memberLabel
             // 
             this.memberLabel.AutoSize = true;
-            this.memberLabel.Location = new System.Drawing.Point(28, 277);
+            this.memberLabel.Location = new System.Drawing.Point(14, 277);
             this.memberLabel.Name = "memberLabel";
             this.memberLabel.Size = new System.Drawing.Size(63, 17);
             this.memberLabel.TabIndex = 100;
@@ -398,14 +406,14 @@
             "Family",
             "Horror",
             "All"});
-            this.memberComboBox.Location = new System.Drawing.Point(105, 274);
+            this.memberComboBox.Location = new System.Drawing.Point(91, 274);
             this.memberComboBox.Name = "memberComboBox";
             this.memberComboBox.Size = new System.Drawing.Size(146, 24);
             this.memberComboBox.TabIndex = 101;
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(995, 54);
+            this.pictureBox.Location = new System.Drawing.Point(1236, 54);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(300, 400);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -415,7 +423,7 @@
             // addLabel
             // 
             this.addLabel.AutoSize = true;
-            this.addLabel.Location = new System.Drawing.Point(28, 18);
+            this.addLabel.Location = new System.Drawing.Point(14, 18);
             this.addLabel.Name = "addLabel";
             this.addLabel.Size = new System.Drawing.Size(37, 17);
             this.addLabel.TabIndex = 72;
@@ -426,17 +434,95 @@
             this.addComboBox.FormattingEnabled = true;
             this.addComboBox.Items.AddRange(new object[] {
             "Movie",
-            "Member"});
-            this.addComboBox.Location = new System.Drawing.Point(105, 15);
+            "Member",
+            "Genre"});
+            this.addComboBox.Location = new System.Drawing.Point(91, 15);
             this.addComboBox.Name = "addComboBox";
             this.addComboBox.Size = new System.Drawing.Size(146, 24);
             this.addComboBox.TabIndex = 73;
+            // 
+            // genreNameTextBox
+            // 
+            this.genreNameTextBox.Location = new System.Drawing.Point(328, 277);
+            this.genreNameTextBox.Name = "genreNameTextBox";
+            this.genreNameTextBox.Size = new System.Drawing.Size(146, 22);
+            this.genreNameTextBox.TabIndex = 105;
+            // 
+            // genreNameLabel
+            // 
+            this.genreNameLabel.AutoSize = true;
+            this.genreNameLabel.Location = new System.Drawing.Point(251, 280);
+            this.genreNameLabel.Name = "genreNameLabel";
+            this.genreNameLabel.Size = new System.Drawing.Size(49, 17);
+            this.genreNameLabel.TabIndex = 103;
+            this.genreNameLabel.Text = "Name:";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(239, 318);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(83, 17);
+            this.descriptionLabel.TabIndex = 104;
+            this.descriptionLabel.Text = "Description:";
+            this.descriptionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(328, 315);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(146, 22);
+            this.descriptionTextBox.TabIndex = 106;
+            // 
+            // deleteGenreButton
+            // 
+            this.deleteGenreButton.Location = new System.Drawing.Point(328, 428);
+            this.deleteGenreButton.Name = "deleteGenreButton";
+            this.deleteGenreButton.Size = new System.Drawing.Size(146, 33);
+            this.deleteGenreButton.TabIndex = 109;
+            this.deleteGenreButton.Text = "Delete";
+            this.deleteGenreButton.UseVisualStyleBackColor = true;
+            // 
+            // modifyGenreButton
+            // 
+            this.modifyGenreButton.Location = new System.Drawing.Point(328, 388);
+            this.modifyGenreButton.Name = "modifyGenreButton";
+            this.modifyGenreButton.Size = new System.Drawing.Size(146, 34);
+            this.modifyGenreButton.TabIndex = 108;
+            this.modifyGenreButton.Text = "Modify";
+            this.modifyGenreButton.UseVisualStyleBackColor = true;
+            // 
+            // addGenreButton
+            // 
+            this.addGenreButton.Location = new System.Drawing.Point(328, 349);
+            this.addGenreButton.Name = "addGenreButton";
+            this.addGenreButton.Size = new System.Drawing.Size(146, 33);
+            this.addGenreButton.TabIndex = 107;
+            this.addGenreButton.Text = "Add new genre";
+            this.addGenreButton.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(930, 54);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(300, 400);
+            this.listView1.TabIndex = 110;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 513);
+            this.ClientSize = new System.Drawing.Size(1552, 513);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.deleteGenreButton);
+            this.Controls.Add(this.modifyGenreButton);
+            this.Controls.Add(this.addGenreButton);
+            this.Controls.Add(this.descriptionTextBox);
+            this.Controls.Add(this.genreNameTextBox);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.genreNameLabel);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.memberComboBox);
             this.Controls.Add(this.memberLabel);
@@ -447,9 +533,9 @@
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.ypeLabel);
             this.Controls.Add(this.dobTextBox);
-            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.memberNameTextBox);
             this.Controls.Add(this.dobLabel);
-            this.Controls.Add(this.nameLabel);
+            this.Controls.Add(this.memberNameLabel);
             this.Controls.Add(this.saveExitButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.modifyMemberButton);
@@ -510,9 +596,9 @@
         private System.Windows.Forms.Button modifyMemberButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button saveExitButton;
-        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.Label memberNameLabel;
         private System.Windows.Forms.Label dobLabel;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox memberNameTextBox;
         private System.Windows.Forms.TextBox dobTextBox;
         private System.Windows.Forms.Label ypeLabel;
         private System.Windows.Forms.ComboBox typeComboBox;
@@ -523,6 +609,14 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label addLabel;
         private System.Windows.Forms.ComboBox addComboBox;
+        private System.Windows.Forms.TextBox genreNameTextBox;
+        private System.Windows.Forms.Label genreNameLabel;
+        private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.Button deleteGenreButton;
+        private System.Windows.Forms.Button modifyGenreButton;
+        private System.Windows.Forms.Button addGenreButton;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 
