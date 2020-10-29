@@ -32,7 +32,7 @@ namespace DBMoviesManager
             InitializeComponent();
 
             //This method sets up a connection to a Postgres database
-            SetDBConnection("localhost", "postgres", "gmq715", "test_db");
+            SetDBConnection("localhost", "postgres", "bmc", "insertion");
 
             checkPostgresVersion();
 
@@ -52,9 +52,10 @@ namespace DBMoviesManager
             string conectionString = "Host=" + serverAddress + "; Username=" + username + "; Password=" + password + "; Database=" + dbName + ";";
 
             dbConnection = new NpgsqlConnection(conectionString);
+            MessageBox.Show(conectionString);
         }
 
-
+        
         /// <summary>
         /// This methods displays the version of the Postgres server to which the program connects to
         /// </summary>
@@ -78,6 +79,7 @@ namespace DBMoviesManager
             
             MessageBox.Show("PostgreSQL version: " + postgresVersion);
         }
+
         private List<Movie> GetMoviesFromDB()
         {
             //Before sending commands to the database, the connection must be opened
