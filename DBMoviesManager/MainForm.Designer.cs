@@ -51,18 +51,16 @@
             this.imageTextBox = new System.Windows.Forms.TextBox();
             this.addMemberButton = new System.Windows.Forms.Button();
             this.modifyMemberButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.deleteMemberButton = new System.Windows.Forms.Button();
             this.saveExitButton = new System.Windows.Forms.Button();
             this.memberNameLabel = new System.Windows.Forms.Label();
             this.dobLabel = new System.Windows.Forms.Label();
             this.memberNameTextBox = new System.Windows.Forms.TextBox();
             this.dobTextBox = new System.Windows.Forms.TextBox();
-            this.ypeLabel = new System.Windows.Forms.Label();
+            this.typeLabel = new System.Windows.Forms.Label();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.genreLabel = new System.Windows.Forms.Label();
             this.genreComboBox = new System.Windows.Forms.ComboBox();
-            this.memberLabel = new System.Windows.Forms.Label();
-            this.memberComboBox = new System.Windows.Forms.ComboBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.addLabel = new System.Windows.Forms.Label();
             this.addComboBox = new System.Windows.Forms.ComboBox();
@@ -95,6 +93,7 @@
             this.movieListView.Size = new System.Drawing.Size(434, 400);
             this.movieListView.TabIndex = 76;
             this.movieListView.UseCompatibleStateImageBehavior = false;
+            this.movieListView.SelectedIndexChanged += new System.EventHandler(this.MovieListView_SelectedIndexChanged);
             // 
             // searchButton
             // 
@@ -128,6 +127,7 @@
             this.showGenreComboBox.Name = "showGenreComboBox";
             this.showGenreComboBox.Size = new System.Drawing.Size(146, 24);
             this.showGenreComboBox.TabIndex = 63;
+            this.showGenreComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowGenreComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -140,30 +140,33 @@
             // 
             // deleteMovieButton
             // 
-            this.deleteMovieButton.Location = new System.Drawing.Point(91, 388);
+            this.deleteMovieButton.Location = new System.Drawing.Point(91, 356);
             this.deleteMovieButton.Name = "deleteMovieButton";
             this.deleteMovieButton.Size = new System.Drawing.Size(146, 33);
             this.deleteMovieButton.TabIndex = 55;
             this.deleteMovieButton.Text = "Delete";
             this.deleteMovieButton.UseVisualStyleBackColor = true;
+            this.deleteMovieButton.Click += new System.EventHandler(this.DeleteMovieButton_Click);
             // 
             // modifyMovieButton
             // 
-            this.modifyMovieButton.Location = new System.Drawing.Point(91, 348);
+            this.modifyMovieButton.Location = new System.Drawing.Point(91, 316);
             this.modifyMovieButton.Name = "modifyMovieButton";
             this.modifyMovieButton.Size = new System.Drawing.Size(146, 34);
             this.modifyMovieButton.TabIndex = 54;
             this.modifyMovieButton.Text = "Modify";
             this.modifyMovieButton.UseVisualStyleBackColor = true;
+            this.modifyMovieButton.Click += new System.EventHandler(this.ModifyMovieButton_Click);
             // 
             // addMovieButton
             // 
-            this.addMovieButton.Location = new System.Drawing.Point(91, 309);
+            this.addMovieButton.Location = new System.Drawing.Point(91, 277);
             this.addMovieButton.Name = "addMovieButton";
             this.addMovieButton.Size = new System.Drawing.Size(146, 33);
             this.addMovieButton.TabIndex = 53;
             this.addMovieButton.Text = "Add new movie";
             this.addMovieButton.UseVisualStyleBackColor = true;
+            this.addMovieButton.Click += new System.EventHandler(this.AddMovieButton_Click);
             // 
             // showMemberComboBox
             // 
@@ -289,14 +292,14 @@
             this.modifyMemberButton.Text = "Modify";
             this.modifyMemberButton.UseVisualStyleBackColor = true;
             // 
-            // deleteButton
+            // deleteMemberButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(328, 236);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(146, 33);
-            this.deleteButton.TabIndex = 80;
-            this.deleteButton.Text = "Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteMemberButton.Location = new System.Drawing.Point(328, 236);
+            this.deleteMemberButton.Name = "deleteMemberButton";
+            this.deleteMemberButton.Size = new System.Drawing.Size(146, 33);
+            this.deleteMemberButton.TabIndex = 80;
+            this.deleteMemberButton.Text = "Delete";
+            this.deleteMemberButton.UseVisualStyleBackColor = true;
             // 
             // saveExitButton
             // 
@@ -340,14 +343,14 @@
             this.dobTextBox.Size = new System.Drawing.Size(146, 22);
             this.dobTextBox.TabIndex = 88;
             // 
-            // ypeLabel
+            // typeLabel
             // 
-            this.ypeLabel.AutoSize = true;
-            this.ypeLabel.Location = new System.Drawing.Point(251, 129);
-            this.ypeLabel.Name = "ypeLabel";
-            this.ypeLabel.Size = new System.Drawing.Size(44, 17);
-            this.ypeLabel.TabIndex = 94;
-            this.ypeLabel.Text = "Type:";
+            this.typeLabel.AutoSize = true;
+            this.typeLabel.Location = new System.Drawing.Point(251, 129);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(44, 17);
+            this.typeLabel.TabIndex = 94;
+            this.typeLabel.Text = "Type:";
             // 
             // typeComboBox
             // 
@@ -386,30 +389,6 @@
             this.genreComboBox.Name = "genreComboBox";
             this.genreComboBox.Size = new System.Drawing.Size(146, 24);
             this.genreComboBox.TabIndex = 97;
-            // 
-            // memberLabel
-            // 
-            this.memberLabel.AutoSize = true;
-            this.memberLabel.Location = new System.Drawing.Point(14, 277);
-            this.memberLabel.Name = "memberLabel";
-            this.memberLabel.Size = new System.Drawing.Size(63, 17);
-            this.memberLabel.TabIndex = 100;
-            this.memberLabel.Text = "Member:";
-            // 
-            // memberComboBox
-            // 
-            this.memberComboBox.FormattingEnabled = true;
-            this.memberComboBox.Items.AddRange(new object[] {
-            "Drama",
-            "Action",
-            "Comedy",
-            "Family",
-            "Horror",
-            "All"});
-            this.memberComboBox.Location = new System.Drawing.Point(91, 274);
-            this.memberComboBox.Name = "memberComboBox";
-            this.memberComboBox.Size = new System.Drawing.Size(146, 24);
-            this.memberComboBox.TabIndex = 101;
             // 
             // pictureBox
             // 
@@ -524,20 +503,18 @@
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.genreNameLabel);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.memberComboBox);
-            this.Controls.Add(this.memberLabel);
             this.Controls.Add(this.showMemberComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.genreComboBox);
             this.Controls.Add(this.genreLabel);
             this.Controls.Add(this.typeComboBox);
-            this.Controls.Add(this.ypeLabel);
+            this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.dobTextBox);
             this.Controls.Add(this.memberNameTextBox);
             this.Controls.Add(this.dobLabel);
             this.Controls.Add(this.memberNameLabel);
             this.Controls.Add(this.saveExitButton);
-            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.deleteMemberButton);
             this.Controls.Add(this.modifyMemberButton);
             this.Controls.Add(this.addMemberButton);
             this.Controls.Add(this.searchLabel);
@@ -594,18 +571,16 @@
         private System.Windows.Forms.TextBox imageTextBox;
         private System.Windows.Forms.Button addMemberButton;
         private System.Windows.Forms.Button modifyMemberButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button deleteMemberButton;
         private System.Windows.Forms.Button saveExitButton;
         private System.Windows.Forms.Label memberNameLabel;
         private System.Windows.Forms.Label dobLabel;
         private System.Windows.Forms.TextBox memberNameTextBox;
         private System.Windows.Forms.TextBox dobTextBox;
-        private System.Windows.Forms.Label ypeLabel;
+        private System.Windows.Forms.Label typeLabel;
         private System.Windows.Forms.ComboBox typeComboBox;
         private System.Windows.Forms.Label genreLabel;
         private System.Windows.Forms.ComboBox genreComboBox;
-        private System.Windows.Forms.Label memberLabel;
-        private System.Windows.Forms.ComboBox memberComboBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label addLabel;
         private System.Windows.Forms.ComboBox addComboBox;
