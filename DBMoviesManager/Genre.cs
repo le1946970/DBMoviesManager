@@ -10,7 +10,9 @@ namespace DBMoviesManager
     {
         public Genre()
         {
-
+            Code = "";
+            Name = "";
+            Description = "";
         }
         public Genre(string code, string name, string description)
         {

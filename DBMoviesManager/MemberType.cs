@@ -10,7 +10,9 @@ namespace DBMoviesManager
     {
         public MemberType() : base()
         {
-
+            TypeID = 0;
+            TypeName = "";
+            TypeDescription = "";
         }
         public MemberType(int typeId, string typeName, string typeDescription, int id, string name, DateTime dob, int memberType) : base(id, name, dob, memberType)
         {
