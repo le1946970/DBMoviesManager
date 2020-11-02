@@ -31,8 +31,13 @@ namespace DBMoviesManager
         {
             InitializeComponent();
 
+            MakeGenreInvisible();
+            MakeMemberInvisible();
+            MakeMovieInvisible();
+            showGenreComboBox.Text = "All";
+
             //This method sets up a connection to a Postgres database
-            SetDBConnection("localhost", "postgres", "bmc", "insertion");
+            SetDBConnection("localhost", "postgres", "bmc", "moviedb");
 
             checkPostgresVersion();
 
@@ -69,7 +74,6 @@ namespace DBMoviesManager
             string conectionString = "Host=" + serverAddress + "; Username=" + username + "; Password=" + password + "; Database=" + dbName + ";";
 
             dbConnection = new NpgsqlConnection(conectionString);
-            MessageBox.Show(conectionString);
         }
 
         
@@ -93,8 +97,6 @@ namespace DBMoviesManager
 
             //After executing the query(ies) in the db, the connection must be closed
             dbConnection.Close();
-            
-            MessageBox.Show("PostgreSQL version: " + postgresVersion);
         }
 
         private List<Movie> GetMoviesFromDB()
@@ -104,7 +106,7 @@ namespace DBMoviesManager
 
 
             //This is a string representing the SQL query to execute in the db            
-            string sqlQuery = "SELECT * FROM employee;";
+            string sqlQuery = "SELECT * FROM moviedbschema.movie;";
             Console.WriteLine("SQL Query: " + sqlQuery);
 
 
@@ -118,7 +120,7 @@ namespace DBMoviesManager
             while (dataReader.Read())
             {
                 //Create a new Movie and setup its info
-                currentMovie = new Movie(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetInt32(3), dataReader.GetInt32(4), dataReader.GetString(5), dataReader.GetString(6));
+                currentMovie = new Movie(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetTimeSpan(3).ToString(), dataReader.GetDouble(4), dataReader.GetString(5));
 
                 movieList.Add(currentMovie);
 
@@ -198,6 +200,9 @@ namespace DBMoviesManager
             ratingTextBox.Visible = false;
             imageLabel.Visible = false;
             imageTextBox.Visible = false;
+            addMovieButton.Visible = false;
+            modifyMovieButton.Visible = false;
+            deleteMovieButton.Visible = false;
         }
         public void MakeMovieVisible()
         {
@@ -213,14 +218,18 @@ namespace DBMoviesManager
             ratingTextBox.Visible = true;
             imageLabel.Visible = true;
             imageTextBox.Visible = true;
+            addMovieButton.Visible = true;
+            modifyMovieButton.Visible = true;
+            deleteMovieButton.Visible = true;
         }
-        private void ShowGenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void ShowGenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Clear the movieListView to only show the movies of the appropriate genre
             movieListView.Items.Clear();
 
             MakeMemberInvisible();
             MakeGenreInvisible();
+            MakeMovieInvisible();
             addLabel.Visible = false;
             addComboBox.Visible = false;
 
@@ -260,7 +269,7 @@ namespace DBMoviesManager
                     searchTextBox.Text = "";
                 }
             }
-        }
+        }*/
 
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
@@ -273,10 +282,10 @@ namespace DBMoviesManager
                 if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
                 {
                     //This assigns the values of the current Movie
-                    currentMovie.Genre = genreComboBox.Text;
+                    //currentMovie.Genre = genreComboBox.Text;
                     currentMovie.Title = titleTextBox.Text;
                     currentMovie.Year = int.Parse(yearTextBox.Text);
-                    currentMovie.Length = int.Parse(lengthTextBox.Text);
+                    currentMovie.Length = lengthTextBox.Text;
                     currentMovie.Rating = double.Parse(ratingTextBox.Text);
                     currentMovie.Image = imageTextBox.Text;
 
@@ -421,10 +430,10 @@ namespace DBMoviesManager
                 if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
                 {
                     //Assigns the values to the object
-                    aMovie.Genre = genreComboBox.Text;
+                    //aMovie.Genre = genreComboBox.Text;
                     aMovie.Title = titleTextBox.Text;
                     aMovie.Year = int.Parse(yearTextBox.Text);
-                    aMovie.Length = int.Parse(lengthTextBox.Text);
+                    aMovie.Length = lengthTextBox.Text;
                     aMovie.Rating = double.Parse(ratingTextBox.Text);
                     pictureBox.Visible = false;
                     aMovie.Image = imageTextBox.Text;
@@ -518,7 +527,7 @@ namespace DBMoviesManager
                 if (movieList[indexInMovieList].Image.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
                 {
                     //Assigns the values from the object to the textboxes
-                    genreComboBox.Text = movieList[indexInMovieList].Genre;
+                    //genreComboBox.Text = movieList[indexInMovieList].Genre;
                     titleTextBox.Text = movieList[indexInMovieList].Title;
                     yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
                     lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
@@ -529,12 +538,53 @@ namespace DBMoviesManager
                     imageTextBox.Text = movieList[indexInMovieList].Image;
                     pictureBox.Visible = true;
                     pictureBox.Image = Image.FromFile(imageTextBox.Text);
+                    MakeGenreInvisible();
+                    MakeMemberInvisible();
+                }
+                //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
+                if (movieList[indexInMovieList].Image.ToString() == "")
+                {
+                    //Assigns the values from the object to the textboxes
+                    //genreComboBox.Text = movieList[indexInMovieList].Genre;
+                    titleTextBox.Text = movieList[indexInMovieList].Title;
+                    yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
+                    lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
+                    ratingTextBox.Text = movieList[indexInMovieList].Rating.ToString();
+                    searchLabel.Visible = true;
+                    searchTextBox.Text = "";
+                    genreComboBox.Text = "";
+                    imageTextBox.Text = movieList[indexInMovieList].Image;
                 }
                 //The user will be notified if they did not entere the correct image format
                 else
                 {
                     MessageBox.Show("The image must be in a jpg, jpeg or a png format, the image was not saved, if you want to add the correct image, please select the movie to modify it");
                 }
+            }
+        }
+
+        private void AddComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //If the movie has the same genre as the selected genre in the genreComboBox, it go through the if statement
+            if (addComboBox.Text == "Movie")
+            {
+                MakeMovieVisible();
+                MakeMemberInvisible();
+                MakeGenreInvisible();
+            }
+            //If the selected genre is all it will display all the movies no matter the genre
+            else if (addComboBox.Text == "Member")
+            {
+                MakeMovieInvisible();
+                MakeMemberVisible();
+                MakeGenreInvisible();
+            }
+            //If the selected genre is all it will display all the movies no matter the genre
+            else if (addComboBox.Text == "Genre")
+            {
+                MakeMovieInvisible();
+                MakeMemberInvisible();
+                MakeGenreVisible();
             }
         }
     }

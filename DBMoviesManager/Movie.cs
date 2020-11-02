@@ -10,9 +10,14 @@ namespace DBMoviesManager
     {
         public Movie()
         {
-
+            ID = 0;
+            Title = "";
+            Year = 0;
+            Length = "";
+            Rating = 0;
+            Image = "";
         }
-        public Movie(int id, string title, int year, int length, double rating, string image, string genre)
+        public Movie(int id, string title, int year, string length, double rating, string image)
         {
             ID = id;
             Title = title;
@@ -20,14 +25,13 @@ namespace DBMoviesManager
             Length = length;
             Rating = rating;
             Image = image;
-            Genre = genre;
         }
         public int ID { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
-        public int Length { get; set; }
+        public string Length { get; set; }
         public double Rating { get; set; }
         public string Image { get; set; }
-        public string Genre { get; set; }
+        //public List<Genre> genreList { get; set; }
     }
 }

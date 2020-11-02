@@ -127,7 +127,7 @@
             this.showGenreComboBox.Name = "showGenreComboBox";
             this.showGenreComboBox.Size = new System.Drawing.Size(146, 24);
             this.showGenreComboBox.TabIndex = 63;
-            this.showGenreComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowGenreComboBox_SelectedIndexChanged);
+            //this.showGenreComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowGenreComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -419,6 +419,7 @@
             this.addComboBox.Name = "addComboBox";
             this.addComboBox.Size = new System.Drawing.Size(146, 24);
             this.addComboBox.TabIndex = 73;
+            this.addComboBox.SelectedIndexChanged += new System.EventHandler(this.AddComboBox_SelectedIndexChanged);
             // 
             // genreNameTextBox
             // 
