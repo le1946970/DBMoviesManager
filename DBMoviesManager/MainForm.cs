@@ -116,6 +116,13 @@ namespace DBMoviesManager
             //This variable stores the result of the SQL query sent to the db
             NpgsqlDataReader dataReader = dbCommand.ExecuteReader();
 
+            movieListView.View = View.Details;          //Set the view to show details.
+            movieListView.FullRowSelect = true;         //Select the item and subitems when selection is made.
+
+            movieListView.Columns.Add("Title");         //Add column Title
+            movieListView.Columns.Add("Year");         //Add column Year
+            movieListView.Columns.Add("Length");         //Add column Length
+
             //Read each line present in the dataReader
             while (dataReader.Read())
             {
@@ -123,13 +130,6 @@ namespace DBMoviesManager
                 currentMovie = new Movie(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetTimeSpan(3).ToString(), dataReader.GetDouble(4), dataReader.GetString(5));
 
                 movieList.Add(currentMovie);
-
-                movieListView.View = View.Details;          //Set the view to show details.
-                movieListView.FullRowSelect = true;         //Select the item and subitems when selection is made.
-
-                movieListView.Columns.Add("Title");         //Add column Title
-                movieListView.Columns.Add("Year");         //Add column Year
-                movieListView.Columns.Add("Length");         //Add column Length
 
                 movieListView.Items.Add(new ListViewItem(new string[] { currentMovie.Title, currentMovie.Year.ToString(), currentMovie.Length.ToString() }));
                 //Resize the headers so we will see al the content without having to resize it
@@ -250,8 +250,7 @@ namespace DBMoviesManager
                     ratingTextBox.Text = "";
                     imageTextBox.Text = "";
                     pictureBox.Visible = false;
-                    searchLabel.Visible = true;
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                 }
                 //If the selected genre is all it will display all the movies no matter the genre
                 else if (genreComboBox.Text == "All")
@@ -266,7 +265,7 @@ namespace DBMoviesManager
                     lengthTextBox.Text = "";
                     ratingTextBox.Text = "";
                     imageTextBox.Text = "";
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                 }
             }
         }*/
@@ -303,8 +302,7 @@ namespace DBMoviesManager
                     ratingTextBox.Text = "";
                     imageTextBox.Text = "";
                     pictureBox.Visible = false;
-                    searchLabel.Visible = true;
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                 }
                 //The user will be notified if they did not entere the correct image format
                 else
@@ -437,7 +435,7 @@ namespace DBMoviesManager
                     aMovie.Rating = double.Parse(ratingTextBox.Text);
                     pictureBox.Visible = false;
                     aMovie.Image = imageTextBox.Text;
-                    searchLabel.Visible = true;
+                    searchTextBox.Text = "Search movie by name";
 
                     //Removes the object at the selected index in the movieListView
                     movieListView.Items.RemoveAt(selectedIndex);
@@ -456,7 +454,7 @@ namespace DBMoviesManager
                     lengthTextBox.Text = "";
                     ratingTextBox.Text = "";
                     imageTextBox.Text = "";
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                 }
                 //The user will be notified if they did not entere the correct image format
                 else
@@ -526,14 +524,14 @@ namespace DBMoviesManager
                 //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
                 if (movieList[indexInMovieList].Image.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
                 {
+                    MakeMovieVisible();
                     //Assigns the values from the object to the textboxes
                     //genreComboBox.Text = movieList[indexInMovieList].Genre;
                     titleTextBox.Text = movieList[indexInMovieList].Title;
                     yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
                     lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
                     ratingTextBox.Text = movieList[indexInMovieList].Rating.ToString();
-                    searchLabel.Visible = true;
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                     genreComboBox.Text = "";
                     imageTextBox.Text = movieList[indexInMovieList].Image;
                     pictureBox.Visible = true;
@@ -541,17 +539,17 @@ namespace DBMoviesManager
                     MakeGenreInvisible();
                     MakeMemberInvisible();
                 }
-                //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
-                if (movieList[indexInMovieList].Image.ToString() == "")
+                //It will go through this else if statement if there is no image
+                else if (movieList[indexInMovieList].Image.ToString() == "")
                 {
+                    MakeMovieVisible();
                     //Assigns the values from the object to the textboxes
                     //genreComboBox.Text = movieList[indexInMovieList].Genre;
                     titleTextBox.Text = movieList[indexInMovieList].Title;
                     yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
                     lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
                     ratingTextBox.Text = movieList[indexInMovieList].Rating.ToString();
-                    searchLabel.Visible = true;
-                    searchTextBox.Text = "";
+                    searchTextBox.Text = "Search movie by name";
                     genreComboBox.Text = "";
                     imageTextBox.Text = movieList[indexInMovieList].Image;
                 }
@@ -586,6 +584,46 @@ namespace DBMoviesManager
                 MakeMemberInvisible();
                 MakeGenreVisible();
             }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            //This will create a List will all the movies containing what the user entered in the searchTextBox
+            var searchMovieName = movieList.FindAll(x => x.Title.ToLower().Contains(searchTextBox.Text.ToLower()));
+
+            //If the string input is empty
+            if (searchTextBox.Text == "")
+            {
+                MessageBox.Show("Please enter a movie name");
+            }
+            //If the searchMovieName list isn't empty, it will go through the if statement
+            else if (searchMovieName.Count > 0)
+            {
+                //Clear the movieListView
+                movieListView.Items.Clear();
+                //Foreach object in the searchMovieName list, it will add the object to the movieListView
+                searchMovieName.ForEach(x => { movieListView.Items.Add(new ListViewItem(new string[] { x.Title, x.Year.ToString() })); });
+
+                //Clear the textboxes
+                genreComboBox.Text = "";
+                titleTextBox.Text = "";
+                yearTextBox.Text = "";
+                lengthTextBox.Text = "";
+                ratingTextBox.Text = "";
+                imageTextBox.Text = "";
+                pictureBox.Visible = false;
+                searchTextBox.Text = "Search movie by name";
+            }
+            //If the searchMovieName list is empty it will notify the user the movie he is looking for could not be found
+            else
+            {
+                MessageBox.Show("We cannot find the movie you are searching for");
+            }
+        }
+
+        private void SearchTextBox_Click(object sender, EventArgs e)
+        {
+            searchTextBox.Text = "";
         }
     }
 }

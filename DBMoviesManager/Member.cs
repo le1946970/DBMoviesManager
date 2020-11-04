@@ -12,7 +12,7 @@ namespace DBMoviesManager
         {
             ID = 0;
             Name = "";
-            //Dob = ?????????;
+            Dob = default;
             MemberType = 0;
         }
         public Member(int id, string name, DateTime dob, int memberType)

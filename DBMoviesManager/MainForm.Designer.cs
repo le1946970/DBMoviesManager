@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchLabel = new System.Windows.Forms.Label();
             this.movieListView = new System.Windows.Forms.ListView();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
@@ -71,19 +70,9 @@
             this.deleteGenreButton = new System.Windows.Forms.Button();
             this.modifyGenreButton = new System.Windows.Forms.Button();
             this.addGenreButton = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.memberListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.AutoSize = true;
-            this.searchLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchLabel.Location = new System.Drawing.Point(496, 483);
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(152, 17);
-            this.searchLabel.TabIndex = 77;
-            this.searchLabel.Text = "Search movie by name";
             // 
             // movieListView
             // 
@@ -103,6 +92,7 @@
             this.searchButton.TabIndex = 75;
             this.searchButton.Text = "Search movie";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // searchTextBox
             // 
@@ -110,6 +100,8 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(262, 22);
             this.searchTextBox.TabIndex = 74;
+            this.searchTextBox.Text = "Search movie by name";
+            this.searchTextBox.Click += new System.EventHandler(this.SearchTextBox_Click);
             // 
             // showGenreComboBox
             // 
@@ -127,7 +119,6 @@
             this.showGenreComboBox.Name = "showGenreComboBox";
             this.showGenreComboBox.Size = new System.Drawing.Size(146, 24);
             this.showGenreComboBox.TabIndex = 63;
-            //this.showGenreComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowGenreComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -481,21 +472,21 @@
             this.addGenreButton.Text = "Add new genre";
             this.addGenreButton.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // memberListView
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(930, 54);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(300, 400);
-            this.listView1.TabIndex = 110;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.memberListView.HideSelection = false;
+            this.memberListView.Location = new System.Drawing.Point(930, 54);
+            this.memberListView.Name = "memberListView";
+            this.memberListView.Size = new System.Drawing.Size(300, 400);
+            this.memberListView.TabIndex = 110;
+            this.memberListView.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1552, 513);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.memberListView);
             this.Controls.Add(this.deleteGenreButton);
             this.Controls.Add(this.modifyGenreButton);
             this.Controls.Add(this.addGenreButton);
@@ -518,7 +509,6 @@
             this.Controls.Add(this.deleteMemberButton);
             this.Controls.Add(this.modifyMemberButton);
             this.Controls.Add(this.addMemberButton);
-            this.Controls.Add(this.searchLabel);
             this.Controls.Add(this.movieListView);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.searchTextBox);
@@ -548,8 +538,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.ListView movieListView;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
@@ -592,7 +580,7 @@
         private System.Windows.Forms.Button deleteGenreButton;
         private System.Windows.Forms.Button modifyGenreButton;
         private System.Windows.Forms.Button addGenreButton;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView memberListView;
     }
 }
 
