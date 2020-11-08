@@ -16,8 +16,10 @@ namespace DBMoviesManager
             Length = "";
             Rating = 0;
             Image = "";
+            Genre = new List<Genre>();
+            Member = new List<Member>();
         }
-        public Movie(int id, string title, int year, string length, double rating, string image)
+        public Movie(int id, string title, int year, string length, double rating, string image, List<Genre> genre, List<Member> members)
         {
             ID = id;
             Title = title;
@@ -25,6 +27,8 @@ namespace DBMoviesManager
             Length = length;
             Rating = rating;
             Image = image;
+            Genre = genre;
+            Member = members;
         }
         public int ID { get; set; }
         public string Title { get; set; }
@@ -32,6 +36,7 @@ namespace DBMoviesManager
         public string Length { get; set; }
         public double Rating { get; set; }
         public string Image { get; set; }
-        //public List<Genre> genreList { get; set; }
+        public List<Genre> Genre { get; set; }
+        public List<Member> Member { get; set; }
     }
 }
