@@ -866,25 +866,19 @@ namespace DBMoviesManager
                         {
                             if (searchGenreName.Exists(x => x.Code == g.Code))
                             {
-                                for (int i = 0; i < searchGenreName.Count; i++)
+                                if (!genreListBox.Items.Contains(g.Name))
                                 {
-                                    if (i == 1)
-                                    {
-                                        if (!genreListBox.Items.Contains(g.Name))
-                                        {
-                                            //Add the member to the movie
-                                            movieList[indexInMovieList].Genre.Add(g);
+                                    //Add the member to the movie
+                                    movieList[indexInMovieList].Genre.Add(g);
 
-                                            UpdateInfo(); //Update the info in the form's controls
+                                    UpdateInfo(); //Update the info in the form's controls
 
-                                            //Clear the appropriate textboxe
-                                            genreNameTextBox.Text = "";
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("This genre is already a part of this movie");
-                                        }
-                                    }
+                                    //Clear the appropriate textboxe
+                                    genreNameTextBox.Text = "";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("This genre is already a part of this movie");
                                 }
                             }
                         }
@@ -1206,8 +1200,6 @@ namespace DBMoviesManager
                 //indexInMovieList is the index in the movieList, it executes the SearchMoviesByName method to search through the movieList
                 //to find the selected movie
                 int indexInMovieList = SearchMoviesByName(selectedMovieName);
-                //If there is no image, it will go through the if statement
-                string movieImage = movieList[indexInMovieList].Image.ToString();
 
                 //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
                 if (movieList[indexInMovieList].Image.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
@@ -1240,6 +1232,7 @@ namespace DBMoviesManager
                     showGenreComboBox.Items.Add("All");
                     foreach (Member m in memberList)
                     {
+                        MessageBox.Show(m.ID.ToString());
                         showMemberComboBox.Items.Add(m.Name);
                     }
 
@@ -1374,9 +1367,7 @@ namespace DBMoviesManager
 
         private void AddMemberButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(memberList.Count.ToString());
             string name = memberNameTextBox.Text;
-            name = char.ToUpper(name[0]) + name.Substring(1);
             // Creates a TextInfo based on the "en-US" culture.
             TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
             name = myTI.ToTitleCase(name);
@@ -1408,25 +1399,20 @@ namespace DBMoviesManager
                         {
                             if (searchMemberName.Exists(x => x.ID == m.ID))
                             {
-                                for (int i = 0; i < 1; i++)
+                                if (!memberListBox.Items.Contains(m.Name))
                                 {
-                                    MessageBox.Show(i.ToString());
-                                    if (!memberListBox.Items.Contains(m.Name))
-                                    {
-                                        //Add the member to the movie
-                                        movieList[indexInMovieList].Member.Add(m);
-                                        memberList.Add(m);
+                                    //Add the member to the movie
+                                    movieList[indexInMovieList].Member.Add(m);
+                                    //---------------------------------------------------------------------If it is a new genre or member it will show the error message but still add it to the listbox and it will add the movie twice when selecting this member in the showMemberComboBox for some reason----------------------------
+                                    //---------------------------I've realized the problemoccurs in the UpdateInfo because it somehow puts the new member at the top and deleted adam???
+                                    UpdateInfo(); //Update the info in the form's controls
 
-                                        MessageBox.Show(memberList.Count.ToString());
-                                        UpdateInfo(); //Update the info in the form's controls
-
-                                        //Clear the appropriate textbox
-                                        memberNameTextBox.Text = "";
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("This genre is already a part of this movie");
-                                    }
+                                    //Clear the appropriate textbox
+                                    memberNameTextBox.Text = "";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("This genre is already a part of this movie");
                                 }
                             }
                         }
@@ -1455,7 +1441,7 @@ namespace DBMoviesManager
                         memberCount = memberCount + 2;
                         for (int i = 0; i < memberCount; i++)
                         {
-                            int id = i;
+                            int id = memberCount;
                             id = id + 10123;
                             if (!memberList.Exists(x => x.ID == id))
                             {
@@ -1470,7 +1456,9 @@ namespace DBMoviesManager
                                             m.Dob = DateTime.ParseExact(dobTextBox.Text, "dd/MM/yyyy", null);
                                             m.MemberType = 1;
                                             memberList.Add(m);
-                                            showMemberComboBox.Items.Add(m.Name);
+                                            MessageBox.Show(showMemberComboBox.Items.Count.ToString() + " " + m.ID.ToString());
+                                            showMemberComboBox.Items.Insert(memberCount, m.Name);
+                                            MessageBox.Show(showMemberComboBox.Items.Count.ToString() + " " + m.ID.ToString());
                                             //Clear the textboxes
                                             ClearTheTextBoxes();
                                         }
@@ -1511,7 +1499,6 @@ namespace DBMoviesManager
                                         {
                                             MessageBox.Show("Please enter a valid member type");
                                         }
-                                        break;
                                     }
                                     catch
                                     {
@@ -1570,7 +1557,9 @@ namespace DBMoviesManager
 
                 //Modify the member object in the memberList
                 memberList.RemoveAt(indexInMemberList);
+                MessageBox.Show(memberList.Count.ToString());
                 memberList.Insert(indexInMemberList, aMember);
+                MessageBox.Show(memberList.Count.ToString());
 
                 //Clear the appropriate textbox
                 ClearTheTextBoxes();
