@@ -337,6 +337,171 @@ namespace DBMoviesManager
 
             return currentMemberList;
         }
+        /// <summary>
+        /// This method adds a new 'movie' record in the 'movie' table of the db.        
+        /// </summary>
+        /// <param name="movie">The object containing the 'movie' info</param>
+        /// <returns></returns>
+        private int InsertMovieInDB(Movie movie)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "INSERT INTO moviedbschema.movie VALUES(" + movie.ID + ", '" + movie.Title + "', '" + movie.Year + ", '" + movie.Length + ", '" + movie.Rating + ", '" + movie.Image + "');";
+            
+            Console.WriteLine("SQL Query: " + sqlQuery);
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+
+        /// <summary>
+        /// This method updates an 'movie' record in the 'movie' table of the db.
+        /// </summary>
+        /// <param name="movie">The object containing the new 'movie' info</param>
+        /// <returns></returns>
+        private int UpdateMovieInDB(Movie movie)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "UPDATE moviedbschema.movie SET movieid = '" + movie.ID + "', title = '" + movie.Title + "', year = '" + movie.Year + "', length = '" + movie.Length + "', audience_rating = '" + movie.Rating + "', imagepath = '" + movie.Image + "' WHERE movieid = " + movie.ID + ";";
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+        /// <summary>
+        /// This method adds a new 'member' record in the 'member' table of the db.        
+        /// </summary>
+        /// <param name="member">The object containing the 'member' info</param>
+        /// <returns></returns>
+        private int InsertMemberInDB(Member member)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "INSERT INTO moviedbschema.member VALUES(" + member.ID + ", '" + member.Name + "', '" + member.Dob + ", '" + member.MemberType + "');";
+
+            Console.WriteLine("SQL Query: " + sqlQuery);
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+
+        /// <summary>
+        /// This method updates an 'member' record in the 'member' table of the db.
+        /// </summary>
+        /// <param name="member">The object containing the new 'member' info</param>
+        /// <returns></returns>
+        private int UpdateMemberInDB(Member member)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "UPDATE moviedbschema.member SET memberid = '" + member.ID + "', name = '" + member.Name + "', dateofbirth = '" + member.Dob + "', type = '" + member.MemberType + "' WHERE memberid = " + member.ID + ";";
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+        /// <summary>
+        /// This method adds a new 'genre' record in the 'genre' table of the db.        
+        /// </summary>
+        /// <param name="genre">The object containing the 'genre' info</param>
+        /// <returns></returns>
+        private int InsertGenreInDB(Genre genre)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "INSERT INTO moviedbschema.genre VALUES(" + genre.Code + ", '" + genre.Name + "', '" + genre.Description + "');";
+
+            Console.WriteLine("SQL Query: " + sqlQuery);
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+
+        /// <summary>
+        /// This method updates an 'genre' record in the 'genre' table of the db.
+        /// </summary>
+        /// <param name="genre">The object containing the new 'genre' info</param>
+        /// <returns></returns>
+        private int UpdateGenreInDB(Genre genre)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            //This is a string representing the SQL query to execute in the db
+            string sqlQuery = "UPDATE moviedbschema.genre SET genrecode = '" + genre.Code + "', name = '" + genre.Name + "', description = '" + genre.Description + "' WHERE genrecode = " + genre.Code + ";";
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
         private void ClearTheTextBoxes()
         {
             genreListBox.Items.Clear();
@@ -362,120 +527,176 @@ namespace DBMoviesManager
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
             //If the input is in a correct format and in the boundaries, it will pass through the if statement
-            if (CheckIfMovieIsOk() == true && checkIfIntervalYearOK(int.Parse(yearTextBox.Text), LowerYear, UpperYear) && checkIfIntervalRatingOK(decimal.Parse(ratingTextBox.Text), LowerRating, UpperRating))
+            if (CheckIfMovieIsOk() == true && checkIfIntervalYearOK(int.Parse(yearTextBox.Text), LowerYear, UpperYear) && checkIfIntervalRatingOK(double.Parse(ratingTextBox.Text), LowerRating, UpperRating))
             {
-                //This will create a new Movie object
-                Movie currentMovie = new Movie();
-                if (imageTextBox.Text == "")
+                String stripped = lengthTextBox.Text.Replace(":", "");
+                if (stripped.All(char.IsDigit))
                 {
-                    //This assigns the values of the current Movie
-                    //currentMovie.Genre = genreComboBox.Text;
-                    currentMovie.Title = titleTextBox.Text;
-                    currentMovie.Year = int.Parse(yearTextBox.Text);
-                    currentMovie.Length = lengthTextBox.Text;
-                    currentMovie.Rating = double.Parse(ratingTextBox.Text);
-                    currentMovie.Image = "No image";
+                    //This will create a new Movie object
+                    Movie currentMovie = new Movie();
+                    if (imageTextBox.Text == "")
+                    {
+                        //This assigns the values of the current Movie
+                        currentMovie.Title = titleTextBox.Text;
+                        currentMovie.Year = int.Parse(yearTextBox.Text);
+                        currentMovie.Length = lengthTextBox.Text;
+                        currentMovie.Rating = double.Parse(ratingTextBox.Text);
+                        currentMovie.Image = "No image";
+                        //Add the current Movie to the movieList
+                        movieList.Add(currentMovie);
 
-                    //Add the current Movie to the movieList
-                    movieList.Add(currentMovie);
+                        //Insert the movie in the db
+                        //InsertMovieInDB(currentMovie);
 
-                    //Add the current Movie to the movieListView
-                    movieListView.Items.Add(new ListViewItem(new string[] { currentMovie.Title, currentMovie.Year.ToString() }));
+                        ClearTheTextBoxes();
+                    }
+                    //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
+                    else if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        try
+                        {
+                            //This assigns the values of the current Movie
+                            currentMovie.Title = titleTextBox.Text;
+                            currentMovie.Year = int.Parse(yearTextBox.Text);
+                            currentMovie.Length = lengthTextBox.Text;
+                            currentMovie.Rating = double.Parse(ratingTextBox.Text);
+                            pictureBox.Image = Image.FromFile(imageTextBox.Text);
+                            currentMovie.Image = imageTextBox.Text;
 
-                    ClearTheTextBoxes();
+                            //Add the current Movie to the movieList
+                            movieList.Add(currentMovie);
+
+                            //Insert the movie in the db
+                            //InsertMovieInDB(currentMovie);
+
+                            ClearTheTextBoxes();
+                        }
+                        catch
+                        {
+                            //Error message
+                            MessageBox.Show("The image could not be found");
+                        }
+                    }
+                    //The user will be notified if they did not enter the correct image format
+                    else
+                    {
+                        MessageBox.Show("The image must be in a jpg, jpeg or a png format");
+                    }
                 }
-                //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
-                else if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    //This assigns the values of the current Movie
-                    //currentMovie.Genre = genreComboBox.Text;
-                    currentMovie.Title = titleTextBox.Text;
-                    currentMovie.Year = int.Parse(yearTextBox.Text);
-                    currentMovie.Length = lengthTextBox.Text;
-                    currentMovie.Rating = double.Parse(ratingTextBox.Text);
-                    currentMovie.Image = imageTextBox.Text;
-
-                    //Add the current Movie to the movieList
-                    movieList.Add(currentMovie);
-
-                    //Add the current Movie to the movieListView
-                    movieListView.Items.Add(new ListViewItem(new string[] { currentMovie.Title, currentMovie.Year.ToString() }));
-
-                    ClearTheTextBoxes();
-                }
-                //The user will be notified if they did not entere the correct image format
                 else
                 {
-                    MessageBox.Show("The image must be in a jpg, jpeg or a png format, the image was not saved, if you want to add the correct image, please select the movie to modify it");
+                    //Error message
+                    MessageBox.Show("The length of the movie must be only digits");
                 }
             }
         }
 
         private void ModifyMovieButton_Click(object sender, EventArgs e)
         {
-            //If the selectedIndex is not 0, it will go through the if statement
-            if (movieListView.SelectedIndices.Count >= 0)
+            //If the input is in a correct format and in the boundaries, it will pass through the if statement
+            if (CheckIfMovieIsOk() == true && checkIfIntervalYearOK(int.Parse(yearTextBox.Text), LowerYear, UpperYear) && checkIfIntervalRatingOK(double.Parse(ratingTextBox.Text), LowerRating, UpperRating))
             {
-                //To avoid an error
-                if (movieListView.SelectedIndices.Count <= 0)
+                String stripped = lengthTextBox.Text.Replace(":", "");
+                if (stripped.All(char.IsDigit))
                 {
-                    return;
-                }
-                //selectedIndex is the index in the movieListView
-                int selectedIndex = movieListView.SelectedIndices[0];
-                //selectedMovieName is a string of the name of the selectedIndex
-                string selectedMovieName = movieListView.Items[selectedIndex].Text;
-                //indexInMovieList is the index in the movieList, it executes the SearchMoviesByName method to search through the movieList
-                //to find the selected movie
-                int indexInMovieList = SearchMoviesByName(selectedMovieName);
-
-                //Created a new instance for the selected object from the movieList
-                Movie aMovie;
-                aMovie = (Movie)movieList[indexInMovieList];
-
-                //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
-                if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    //Assigns the values to the object
-                    //aMovie.Genre = genreComboBox.Text;
-                    aMovie.Title = titleTextBox.Text;
-                    aMovie.Year = int.Parse(yearTextBox.Text);
-                    aMovie.Length = lengthTextBox.Text;
-                    aMovie.Rating = double.Parse(ratingTextBox.Text);
-                    pictureBox.Visible = false;
-                    aMovie.Image = imageTextBox.Text;
-                    searchTextBox.Text = "Search movie by name";
-
-                    //Removes the object at the selected index in the movieListView
-                    movieListView.Items.RemoveAt(selectedIndex);
-                    //Inserts the modified object at the selected index in the movieListView
-                    movieListView.Items.Insert(selectedIndex, new ListViewItem(new string[] { aMovie.Title, aMovie.Year.ToString() }));
-
-                    //Removes the object at the selected index in the movieList
-                    movieList.RemoveAt(indexInMovieList);
-                    //Inserts the modified object at the selected index in the movieList
-                    movieList.Insert(indexInMovieList, aMovie);
-
-                    //Clear the textboxes
-                    ClearTheTextBoxes();
-
-                    movieListView.Items.Clear(); //Clear the items in the listview
-
-                    foreach (Movie m in movieList) //Refresh the listview
+                    //If the selectedIndex is not 0, it will go through the if statement
+                    if (movieListView.SelectedIndices.Count >= 0)
                     {
-                        movieListView.Items.Add(new ListViewItem(new string[] { m.Title, m.Year.ToString(), m.Length.ToString() }));
+                        //To avoid an error
+                        if (movieListView.SelectedIndices.Count <= 0)
+                        {
+                            return;
+                        }
+                        //selectedIndex is the index in the movieListView
+                        int selectedIndex = movieListView.SelectedIndices[0];
+                        //selectedMovieName is a string of the name of the selectedIndex
+                        string selectedMovieName = movieListView.Items[selectedIndex].Text;
+                        //indexInMovieList is the index in the movieList, it executes the SearchMoviesByName method to search through the movieList
+                        //to find the selected movie
+                        int indexInMovieList = SearchMoviesByName(selectedMovieName);
+
+                        //Created a new instance for the selected object from the movieList
+                        Movie aMovie;
+                        aMovie = (Movie)movieList[indexInMovieList];
+                        if (imageTextBox.Text == "No image" || imageTextBox.Text == "")
+                        {
+                            //Assigns the values to the object
+                            aMovie.Title = titleTextBox.Text;
+                            aMovie.Year = int.Parse(yearTextBox.Text);
+                            aMovie.Length = lengthTextBox.Text;
+                            aMovie.Rating = double.Parse(ratingTextBox.Text);
+                            pictureBox.Visible = false;
+                            searchTextBox.Text = "Search movie by name";
+                            aMovie.Image = imageTextBox.Text;
+
+                            //Removes the object at the selected index in the movieListView
+                            movieListView.Items.RemoveAt(selectedIndex);
+                            //Inserts the modified object at the selected index in the movieListView
+                            movieListView.Items.Insert(selectedIndex, new ListViewItem(new string[] { aMovie.Title, aMovie.Year.ToString(), aMovie.Length.ToString() }));
+
+                            //Removes the object at the selected index in the movieList
+                            movieList.RemoveAt(indexInMovieList);
+                            //Inserts the modified object at the selected index in the movieList
+                            movieList.Insert(indexInMovieList, aMovie);
+
+                            //Update the movie in the db
+                            //UpdateMovieInDB(aMovie);
+
+                            //Clear the textboxes
+                            ClearTheTextBoxes();
+                        }
+                        else if (imageTextBox.Text.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || imageTextBox.Text.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            try
+                            {
+                                //Assigns the values to the object
+                                aMovie.Title = titleTextBox.Text;
+                                aMovie.Year = int.Parse(yearTextBox.Text);
+                                aMovie.Length = lengthTextBox.Text;
+                                aMovie.Rating = double.Parse(ratingTextBox.Text);
+                                pictureBox.Visible = false;
+                                aMovie.Image = imageTextBox.Text;
+                                searchTextBox.Text = "Search movie by name";
+
+                                //Removes the object at the selected index in the movieListView
+                                movieListView.Items.RemoveAt(selectedIndex);
+                                //Inserts the modified object at the selected index in the movieListView
+                                movieListView.Items.Insert(selectedIndex, new ListViewItem(new string[] { aMovie.Title, aMovie.Year.ToString(), aMovie.Length.ToString() }));
+
+                                //Removes the object at the selected index in the movieList
+                                movieList.RemoveAt(indexInMovieList);
+                                //Inserts the modified object at the selected index in the movieList
+                                movieList.Insert(indexInMovieList, aMovie);
+
+                                //Update the movie in the db
+                                //UpdateMovieInDB(aMovie);
+
+                                //Clear the textboxes
+                                ClearTheTextBoxes();
+                            }
+                            catch
+                            {
+                                //Error message
+                                MessageBox.Show("The image could not be found");
+                            }
+                        }
+                        //The user will be notified if they did not entere the correct image format
+                        else
+                        {
+                            MessageBox.Show("The image must be in a jpg, jpeg or a png format");
+                        }
+                    }
+                    //If no movie is selected, it will notify the user to select a movie to modify it
+                    else
+                    {
+                        MessageBox.Show("You need to select a movie to modify");
                     }
                 }
-                //The user will be notified if they did not entere the correct image format
                 else
                 {
-                    MessageBox.Show("The image must be in a jpg, jpeg or a png format, the image was not saved, if you want to add the correct image, please select the movie to modify it");
+                    //Error message
+                    MessageBox.Show("The length of the movie must be only digits");
                 }
-            }
-            //If no movie is selected, it will notify the user to select a movie to modify it
-            else
-            {
-                MessageBox.Show("You need to select a movie to modify");
             }
         }
 
@@ -512,6 +733,7 @@ namespace DBMoviesManager
             MakeGenreInvisible();
             MakeMemberInvisible();
             MakeMovieVisible();
+            addMovieButton.Visible = false;
         }
 
         private void AddComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -672,86 +894,97 @@ namespace DBMoviesManager
             MakeMemberInvisible();
             //Clear the selected item from the memberListBox to avoid confusion for the user
             memberListBox.ClearSelected();
+            genreNameTextBox.Text = "";
         }
 
         private void modifyGenreButton_Click(object sender, EventArgs e)
         {
-            string name = genreNameTextBox.Text;
-            name = char.ToUpper(name[0]) + name.Substring(1);
-            //selectedIndex is the index in the movieListView
-            int selectedIndex = showGenreComboBox.SelectedIndex;
-            //selectedMovieName is a string of the name of the selectedIndex
-            string selectedGenreName = showGenreComboBox.Items[selectedIndex].ToString();
-            //indexInMovieList is the index in the movieList, it executes the SearchMoviesByName method to search through the movieList
-            //to find the selected movie
-            int indexInGenreList = SearchByGenre(selectedGenreName);
-            
-            //This will create a List will all the movies containing what the user entered in the searchTextBox
-            var searchGenreName = genreList.Find(x => x.Name.ToLower().Contains(showGenreComboBox.Text.ToLower()));
-
-            //If the member isn't in a movie, this if statement will modify the information for the member only
-            if (searchGenreName.Name == name)
+            //If the input is in a correct format and in the boundaries, it will pass through the if statement
+            if (CheckIfGenreIsOk() == true)
             {
-                if (!movieList.Exists(x => x.Genre.Exists(y => y.Name == name)))
+                if (genreNameTextBox.TextLength >= 3)
                 {
-                    //Created a new Member object
-                    Genre aGenre = new Genre();
-                    aGenre.Name = name;
-                    aGenre.Description = descriptionTextBox.Text;
-                    aGenre.Code = name.Substring(0, 3).ToUpper();
+                    string desc = descriptionTextBox.Text;
+                    string oldName = showGenreComboBox.Text;
+                    string name = genreNameTextBox.Text;
+                    name = char.ToUpper(name[0]) + name.Substring(1);
 
-                    //Modify the genre object in the memberList
-                    genreList.RemoveAt(indexInGenreList);
-                    genreList.Insert(indexInGenreList, aGenre);
+                    //selectedIndex is the index in the movieListView
+                    int selectedIndex = showGenreComboBox.SelectedIndex;
+                    //selectedMovieName is a string of the name of the selectedIndex
+                    string selectedGenreName = showGenreComboBox.Items[selectedIndex].ToString();
+                    //indexInMovieList is the index in the movieList, it executes the SearchMoviesByName method to search through the movieList
+                    //to find the selected movie
+                    int indexInGenreList = SearchByGenre(selectedGenreName);
 
-                    //Modify the genre object in the showGenreComboBox
-                    showGenreComboBox.Items.Clear();
-                    foreach (Genre g in genreList)
+                    //This will create a List will all the movies containing what the user entered in the searchTextBox
+                    var searchGenreName = genreList.FindAll(x => x.Name.ToLower().Contains(showGenreComboBox.Text.ToLower()));
+
+                    //If the genre isn't in a movie, this if statement will modify the information for the genre only
+                    if (!movieList.Exists(x => x.Genre.Exists(y => y.Name == oldName)))
                     {
-                        showGenreComboBox.Items.Add(g.Name);
-                    }
-                    showGenreComboBox.Items.Add("All");
+                        searchGenreName.ForEach(x => { x.Name = name; x.Description = descriptionTextBox.Text; x.Code = name.Substring(0, 3).ToUpper(); });
 
-                    //Clear the appropriate textbox
-                    ClearTheTextBoxes();
-                    movieListView.Items.Clear();
-                }
-                else
-                {
-                    foreach (Movie m in movieList)
-                    {
-                        for (int i = 0; i < m.Genre.Count; i++)
+                        //Modify the genre object in the showGenreComboBox
+                        showGenreComboBox.Items.Clear();
+                        foreach (Genre g in genreList)
                         {
-                            if (searchGenreName.Name == m.Genre[i].Name)
+                            showGenreComboBox.Items.Add(g.Name);
+                        }
+                        showGenreComboBox.Items.Add("All");
+
+                        //Update the genre in the db
+                        //UpdateGenreInDB(searchGenreName);
+
+                        //Clear the appropriate textbox
+                        ClearTheTextBoxes();
+                        movieListView.Items.Clear();
+                    }
+                    else
+                    {
+                        foreach (Movie m in movieList)
+                        {
+                            for (int i = 0; i < m.Genre.Count; i++)
                             {
-                                //Created a new Member object
-                                Genre aGenre = new Genre();
-                                aGenre.Name = name;
-                                aGenre.Description = descriptionTextBox.Text;
-                                aGenre.Code = name.Substring(0, 3).ToUpper();
-
-                                //Modify the genre object in the movie
-                                m.Genre.RemoveAt(i);
-                                m.Genre.Insert(i, aGenre);
-
-                                //Modify the genre object in the memberList
-                                genreList.RemoveAt(indexInGenreList);
-                                genreList.Insert(indexInGenreList, aGenre);
-
-                                //Modify the genre object in the showGenreComboBox
-                                showGenreComboBox.Items.Clear();
-                                foreach (Genre g in genreList)
+                                if (searchGenreName.Exists(x => x.Code == m.Genre[i].Code))
                                 {
-                                    showGenreComboBox.Items.Add(g.Name);
-                                }
-                                showGenreComboBox.Items.Add("All");
+                                    m.Genre[i].Name = name;
+                                    m.Genre[i].Description = desc;
+                                    m.Genre[i].Code = name.Substring(0, 3).ToUpper();
 
-                                //Clear the appropriate textbox
-                                ClearTheTextBoxes();
-                                movieListView.Items.Clear();
+                                    //Modify the member object in the emberList
+                                    genreList.RemoveAt(indexInGenreList);
+                                    genreList.Insert(indexInGenreList, m.Genre[i]);
+
+                                    //Modify the genre object in the movie
+                                    m.Genre.RemoveAt(i);
+                                    m.Genre.Insert(i, m.Genre[i]);
+
+                                    //Modify the genre object in the showGenreComboBox
+                                    showGenreComboBox.Items.Clear();
+                                    foreach (Genre g in genreList)
+                                    {
+                                        showGenreComboBox.Items.Add(g.Name);
+                                    }
+                                    showGenreComboBox.Items.Add("All");
+
+                                    //Update the movie in the db
+                                    //UpdateMovieInDB(m);
+                                    //Update the genre in the db
+                                    //UpdateGenreInDB(searchGenreName);
+
+                                    //Clear the appropriate textbox
+                                    ClearTheTextBoxes();
+                                    movieListView.Items.Clear();
+                                }
                             }
                         }
                     }
+                }
+                else
+                {
+                    //Error message
+                    MessageBox.Show("Please enter at least 3 letters");
                 }
             }
         }
@@ -774,6 +1007,9 @@ namespace DBMoviesManager
                 {
                     //Delete the item in question from movieList
                     movieList[selectedMovie].Genre.RemoveAt(selectedGenre);
+                    
+                    //Update the movie in the db
+                    //UpdateMovieInDB(movieList[selectedMovie]);
 
                     //Update the form information
                     UpdateInfo();
@@ -781,7 +1017,7 @@ namespace DBMoviesManager
             }
             else
             {
-                //Get the selected index for member
+                //Get the selected index for genre
                 int selectedGenre = showGenreComboBox.SelectedIndex;
                 string selectedGenreName = showGenreComboBox.Items[selectedGenre].ToString();
                 int indexInGenreList = SearchByGenre(selectedGenreName);
@@ -806,31 +1042,6 @@ namespace DBMoviesManager
                         }
                     }
                 }
-                /*
-                //This will create a List will all the movies containing what the user entered in the searchTextBox
-                var searchGenreName = genreList.FindAll(x => x.Name.ToLower().Contains(showGenreComboBox.Text.ToLower()));
-                if (showGenreComboBox.Text == "All")
-                {
-                    MessageBox.Show("You cannot delete the All category");
-                }
-                else if (searchGenreName.Count > 0)
-                {
-                    foreach (Movie m in movieList)
-                    {
-                        for (int i = 0; i < m.Genre.Count; i++)
-                        {
-                            if (searchGenreName.Exists(x => x.Name == m.Genre[i].Name))
-                            {
-                                m.Genre.RemoveAt(i);
-                                showGenreComboBox.Items.RemoveAt(selectedGenre);
-                                genreList.RemoveAt(indexInGenreList);
-                                //Clear the appropriate textbox
-                                ClearTheTextBoxes();
-                                movieListView.Items.Clear();
-                            }
-                        }
-                    }
-                }*/
             }
         }
 
@@ -838,7 +1049,7 @@ namespace DBMoviesManager
         {
             string name = genreNameTextBox.Text;
             name = char.ToUpper(name[0]) + name.Substring(1);
-            if(movieListView.SelectedIndices.Count > 0)
+            if (movieListView.SelectedIndices.Count > 0)
             {
                 if (movieListView.SelectedIndices.Count <= 0)
                 {
@@ -868,8 +1079,11 @@ namespace DBMoviesManager
                             {
                                 if (!genreListBox.Items.Contains(g.Name))
                                 {
-                                    //Add the member to the movie
+                                    //Add the genre to the movie
                                     movieList[indexInMovieList].Genre.Add(g);
+
+                                    //Update the movie in the db
+                                    //UpdateMovieInDB(movieList[indexInMovieList]);
 
                                     UpdateInfo(); //Update the info in the form's controls
 
@@ -897,36 +1111,51 @@ namespace DBMoviesManager
             }
             else
             {
-                if (!genreList.Exists(x => x.Name == name))
+                //If the input is in a correct format and in the boundaries, it will pass through the if statement
+                if (CheckIfGenreIsOk() == true)
                 {
-                    //Create a new genre item
-                    Genre genre = new Genre();
-
-                    //Get the genre's information
-                    genre.Name = name;
-                    genre.Description = descriptionTextBox.Text;
-                    genre.Code = genreNameTextBox.Text.Substring(0, 3).ToUpper();
-                    genreList.Add(genre);
-
-                    showGenreComboBox.Items.Clear(); //Clear the showGenreComboBox
-                    foreach (Genre g in genreList)
+                    if (genreNameTextBox.TextLength >= 3)
                     {
-                        showGenreComboBox.Items.Add(g.Name);
-                    }
-                    showGenreComboBox.Items.Add("All");
+                        if (!genreList.Exists(x => x.Name == name))
+                        {
+                            //Create a new genre item
+                            Genre genre = new Genre();
 
-                    //Clear the textboxes
-                    ClearTheTextBoxes();
-                }
-                else
-                {
-                    MessageBox.Show("This genre already exists");
+                            //Get the genre's information
+                            genre.Name = name;
+                            genre.Description = descriptionTextBox.Text;
+                            genre.Code = genreNameTextBox.Text.Substring(0, 3).ToUpper();
+                            genreList.Add(genre);
+
+                            showGenreComboBox.Items.Clear(); //Clear the showGenreComboBox
+                            foreach (Genre g in genreList)
+                            {
+                                showGenreComboBox.Items.Add(g.Name);
+                            }
+                            showGenreComboBox.Items.Add("All");
+
+                            //Insert the genre in the db
+                            //InsertGenreInDB(genre);
+
+                            //Clear the textboxes
+                            ClearTheTextBoxes();
+                        }
+                        else
+                        {
+                            MessageBox.Show("This genre already exists");
+                        }
+                    }
+                    else
+                    {
+                        //Error message
+                        MessageBox.Show("Please enter at least 3 letters");
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// This method will search through every movie in moviList
+        /// This method will search through every movie in movieList
         /// </summary>
         /// <param name="movieName"></param>
         /// <returns></returns>
@@ -1086,7 +1315,24 @@ namespace DBMoviesManager
             formOK = formOK && CheckIfInputOk(titleTextBox.Text, "string");
             formOK = formOK && CheckIfInputOk(yearTextBox.Text, "int");
             formOK = formOK && CheckIfInputOk(lengthTextBox.Text, "string");
-            formOK = formOK && CheckIfInputOk(ratingTextBox.Text, "decimal");
+            formOK = formOK && CheckIfInputOk(ratingTextBox.Text, "double");
+
+            return formOK;
+        }
+        private bool CheckIfMemberIsOk()
+        {
+            bool formOK = true;
+
+            formOK = formOK && CheckIfInputOk(memberNameTextBox.Text, "string");
+            formOK = formOK && CheckIfInputOk(typeComboBox.Text, "string");
+
+            return formOK;
+        }
+        private bool CheckIfGenreIsOk()
+        {
+            bool formOK = true;
+
+            formOK = formOK && CheckIfInputOk(genreNameTextBox.Text, "string");
 
             return formOK;
         }
@@ -1101,6 +1347,7 @@ namespace DBMoviesManager
         {
             int intVariable;
             double doubleVariable;
+            DateTime dateTimeVariable;
 
             if (String.IsNullOrEmpty(field))
             {
@@ -1119,6 +1366,13 @@ namespace DBMoviesManager
                     break;
                 case "double":  //Checks if the data type is 'double'
                     if (double.TryParse(field, out doubleVariable) == false)
+                    {
+                        MessageBox.Show("The value: " + field + " must be a(n) " + fieldType + " value");
+                        return false;
+                    }
+                    break;
+                case "dateTime": //Checks if the data type is 'DateTime'
+                    if (DateTime.TryParse(field, out dateTimeVariable) == false)
                     {
                         MessageBox.Show("The value: " + field + " must be a(n) " + fieldType + " value");
                         return false;
@@ -1161,7 +1415,7 @@ namespace DBMoviesManager
         /// <param name="lowerLimit">The value's minimum</param>
         /// <param name="upperLimit">The value's maximum</param>
         /// <returns>Returns a boolean value dictating if the interval year is usable or not.</returns>
-        private bool checkIfIntervalRatingOK(decimal value, int lowerLimit, int upperLimit)
+        private bool checkIfIntervalRatingOK(double value, int lowerLimit, int upperLimit)
         {
             //If the rating is in the boundaries, the code will keep running
             if (value <= upperLimit && value >= lowerLimit)
@@ -1204,40 +1458,48 @@ namespace DBMoviesManager
                 //Makes sure the imageTextBox is indeed a picture in either the jpg, jepg or the png format
                 if (movieList[indexInMovieList].Image.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".jpeg", StringComparison.InvariantCultureIgnoreCase) || movieList[indexInMovieList].Image.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    MakeMovieVisible();
-                    //Assigns the values from the object to the textboxes
-                    //genreComboBox.Text = movieList[indexInMovieList].Genre;
-                    titleTextBox.Text = movieList[indexInMovieList].Title;
-                    yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
-                    lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
-                    ratingTextBox.Text = movieList[indexInMovieList].Rating.ToString();
-                    searchTextBox.Text = "Search movie by name";
-                    imageTextBox.Text = movieList[indexInMovieList].Image;
-                    pictureBox.Visible = true;
-                    pictureBox.Image = Image.FromFile(imageTextBox.Text);
-                    //Genre distribution
-                    foreach (Genre g in movieList[indexInMovieList].Genre)
+                    try
                     {
-                        genreListBox.Items.Add(g.Name);
+                        MakeMovieVisible();
+                        //Assigns the values from the object to the textboxes
+                        //genreComboBox.Text = movieList[indexInMovieList].Genre;
+                        titleTextBox.Text = movieList[indexInMovieList].Title;
+                        yearTextBox.Text = movieList[indexInMovieList].Year.ToString();
+                        lengthTextBox.Text = movieList[indexInMovieList].Length.ToString();
+                        ratingTextBox.Text = movieList[indexInMovieList].Rating.ToString();
+                        searchTextBox.Text = "Search movie by name";
+                        imageTextBox.Text = movieList[indexInMovieList].Image;
+                        pictureBox.Visible = true;
+                        pictureBox.Image = Image.FromFile(imageTextBox.Text);
+                        
+                        //Genre distribution
+                        foreach (Genre g in movieList[indexInMovieList].Genre)
+                        {
+                            genreListBox.Items.Add(g.Name);
+                        }
+                        //Member distribution
+                        foreach (Member m in movieList[indexInMovieList].Member)
+                        {
+                            memberListBox.Items.Add(m.Name);
+                        }
+                        foreach (Genre g in genreList)
+                        {
+                            showGenreComboBox.Items.Add(g.Name);
+                        }
+                        showGenreComboBox.Items.Add("All");
+                        foreach (Member m in memberList)
+                        {
+                            showMemberComboBox.Items.Add(m.Name);
+                        }
+                        MakeGenreInvisible();
+                        MakeMemberInvisible();
+                        addMovieButton.Visible = false;
                     }
-                    //Member distribution
-                    foreach (Member m in movieList[indexInMovieList].Member)
+                    catch
                     {
-                        memberListBox.Items.Add(m.Name);
+                        //Error message
+                        MessageBox.Show("The image could not be found");
                     }
-                    foreach (Genre g in genreList)
-                    {
-                        showGenreComboBox.Items.Add(g.Name);
-                    }
-                    showGenreComboBox.Items.Add("All");
-                    foreach (Member m in memberList)
-                    {
-                        MessageBox.Show(m.ID.ToString());
-                        showMemberComboBox.Items.Add(m.Name);
-                    }
-
-                    MakeGenreInvisible();
-                    MakeMemberInvisible();
                 }
                 //It will go through this else if statement if there is no image
                 else if (movieList[indexInMovieList].Image.ToString() == "No image" || movieList[indexInMovieList].Image.ToString() == "")
@@ -1245,6 +1507,7 @@ namespace DBMoviesManager
                     MakeMovieVisible();
                     MakeGenreInvisible();
                     MakeMemberInvisible();
+                    addMovieButton.Visible = false;
 
                     //Assigns the values from the object to the textboxes
                     //genreComboBox.Text = movieList[indexInMovieList].Genre;
@@ -1278,7 +1541,7 @@ namespace DBMoviesManager
                 //The user will be notified if they did not entere the correct image format
                 else
                 {
-                    MessageBox.Show("The image must be in a jpg, jpeg or a png format, the image was not saved, if you want to add the correct image, please select the movie to modify it");
+                    MessageBox.Show("The image must be in a jpg, jpeg or a png format");
                 }
             }
 
@@ -1367,6 +1630,7 @@ namespace DBMoviesManager
 
         private void AddMemberButton_Click(object sender, EventArgs e)
         {
+            string dob = dobTextBox.Text;
             string name = memberNameTextBox.Text;
             // Creates a TextInfo based on the "en-US" culture.
             TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
@@ -1391,7 +1655,7 @@ namespace DBMoviesManager
                 {
                     MessageBox.Show("Please enter a member name");
                 }
-                else if (memberNameTextBox.TextLength >=3 )
+                else if (memberNameTextBox.TextLength >= 3)
                 {
                     if (searchMemberName.Count > 0)
                     {
@@ -1403,8 +1667,10 @@ namespace DBMoviesManager
                                 {
                                     //Add the member to the movie
                                     movieList[indexInMovieList].Member.Add(m);
-                                    //---------------------------------------------------------------------If it is a new genre or member it will show the error message but still add it to the listbox and it will add the movie twice when selecting this member in the showMemberComboBox for some reason----------------------------
-                                    //---------------------------I've realized the problemoccurs in the UpdateInfo because it somehow puts the new member at the top and deleted adam???
+
+                                    //Update the movie in the db
+                                    //UpdateMovieInDB(movieList[indexInMovieList]);
+
                                     UpdateInfo(); //Update the info in the form's controls
 
                                     //Clear the appropriate textbox
@@ -1412,7 +1678,7 @@ namespace DBMoviesManager
                                 }
                                 else
                                 {
-                                    MessageBox.Show("This genre is already a part of this movie");
+                                    MessageBox.Show("This member is already a part of this movie");
                                 }
                             }
                         }
@@ -1432,185 +1698,236 @@ namespace DBMoviesManager
             }
             else
             {
-                if (!memberList.Exists(x => x.Name == name))
+                //If the input is in a correct format and in the boundaries, it will pass through the if statement
+                if (CheckIfMemberIsOk() == true)
                 {
-                    //Get the member's information
-                    foreach (Member m in memberList)
+                    if (memberNameTextBox.TextLength >= 3)
                     {
-                        int memberCount = memberList.Count;
-                        memberCount = memberCount + 2;
-                        for (int i = 0; i < memberCount; i++)
+                        if (!memberList.Exists(x => x.Name == name))
                         {
-                            int id = memberCount;
-                            id = id + 10123;
-                            if (!memberList.Exists(x => x.ID == id))
+                            Member newMember = new Member();
+                            int memberCount = memberList.Count;
+                            memberCount = memberCount + 2;
+                            for (int i = 0; i < memberCount; i++)
                             {
-                                if (id != 10126)
+                                int id = memberCount;
+                                id = id + 10123;
+                                if (!memberList.Exists(x => x.ID == id))
                                 {
-                                    try
+                                    if (id != 10126)
                                     {
-                                        if (typeComboBox.Text == "Actor")
+                                        if (DateTime.TryParse(dob, out DateTime DateValue))
                                         {
-                                            m.ID = id;
-                                            m.Name = name;
-                                            m.Dob = DateTime.ParseExact(dobTextBox.Text, "dd/MM/yyyy", null);
-                                            m.MemberType = 1;
-                                            memberList.Add(m);
-                                            MessageBox.Show(showMemberComboBox.Items.Count.ToString() + " " + m.ID.ToString());
-                                            showMemberComboBox.Items.Insert(memberCount, m.Name);
-                                            MessageBox.Show(showMemberComboBox.Items.Count.ToString() + " " + m.ID.ToString());
-                                            //Clear the textboxes
-                                            ClearTheTextBoxes();
-                                        }
-                                        else if (typeComboBox.Text == "Director")
-                                        {
-                                            m.ID = id;
-                                            m.Name = name;
-                                            m.Dob = DateTime.ParseExact(dobTextBox.Text, "dd/MM/yyyy", null);
-                                            m.MemberType = 2;
-                                            memberList.Add(m);
-                                            showMemberComboBox.Items.Add(m.Name);
-                                            //Clear the textboxes
-                                            ClearTheTextBoxes();
-                                        }
-                                        else if (typeComboBox.Text == "Producer")
-                                        {
-                                            m.ID = id;
-                                            m.Name = name;
-                                            m.Dob = DateTime.ParseExact(dobTextBox.Text, "dd/MM/yyyy", null);
-                                            m.MemberType = 3;
-                                            memberList.Add(m);
-                                            showMemberComboBox.Items.Add(m.Name);
-                                            //Clear the textboxes
-                                            ClearTheTextBoxes();
-                                        }
-                                        else if (typeComboBox.Text == "Director of photography")
-                                        {
-                                            m.ID = id;
-                                            m.Name = name;
-                                            m.Dob = DateTime.ParseExact(dobTextBox.Text, "dd/MM/yyyy", null);
-                                            m.MemberType = 4;
-                                            memberList.Add(m);
-                                            showMemberComboBox.Items.Add(m.Name);
-                                            //Clear the textboxes
-                                            ClearTheTextBoxes();
+                                            if (typeComboBox.Text == "Actor")
+                                            {
+                                                newMember.ID = id;
+                                                newMember.Name = name;
+                                                newMember.Dob = DateValue;
+                                                newMember.MemberType = 1;
+                                                memberList.Add(newMember);
+                                                showMemberComboBox.Items.Add(newMember.Name);
+
+                                                //Insert the member in the db
+                                                //InsertMemberInDB(newMember);
+
+                                                //Clear the textboxes
+                                                ClearTheTextBoxes();
+                                            }
+                                            else if (typeComboBox.Text == "Director")
+                                            {
+                                                newMember.ID = id;
+                                                newMember.Name = name;
+                                                newMember.Dob = DateValue;
+                                                newMember.MemberType = 2;
+                                                memberList.Add(newMember);
+                                                showMemberComboBox.Items.Add(newMember.Name);
+
+                                                //Insert the member in the db
+                                                //InsertMemberInDB(newMember);
+
+                                                //Clear the textboxes
+                                                ClearTheTextBoxes();
+                                            }
+                                            else if (typeComboBox.Text == "Producer")
+                                            {
+                                                newMember.ID = id;
+                                                newMember.Name = name;
+                                                newMember.Dob = DateValue;
+                                                newMember.MemberType = 3;
+                                                memberList.Add(newMember);
+                                                showMemberComboBox.Items.Add(newMember.Name);
+
+                                                //Insert the member in the db
+                                                //InsertMemberInDB(newMember);
+
+                                                //Clear the textboxes
+                                                ClearTheTextBoxes();
+                                            }
+                                            else if (typeComboBox.Text == "Director of photography")
+                                            {
+                                                newMember.ID = id;
+                                                newMember.Name = name;
+                                                newMember.Dob = DateValue;
+                                                newMember.MemberType = 4;
+                                                memberList.Add(newMember);
+                                                showMemberComboBox.Items.Add(newMember.Name);
+
+                                                //Insert the member in the db
+                                                //InsertMemberInDB(newMember);
+
+                                                //Clear the textboxes
+                                                ClearTheTextBoxes();
+                                            }
+                                            else
+                                            {
+                                                //Error message
+                                                MessageBox.Show("Please enter a valid member type");
+                                            }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Please enter a valid member type");
+                                            //Error message
+                                            MessageBox.Show("The Date of birth was not in the correct format");
                                         }
-                                    }
-                                    catch
-                                    {
-                                        MessageBox.Show("The Date of birth was not in the correct format");
                                     }
                                 }
                             }
                         }
-                        break;
+                        else
+                        {
+                            //Error message
+                            MessageBox.Show("This member already exists");
+                        }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("This member already exists");
+                    else
+                    {
+                        //Error message
+                        MessageBox.Show("Please enter at least 3 letters");
+                    }
                 }
             }
         }
 
         private void ModifyMemberButton_Click(object sender, EventArgs e)
         {
-            //Get the selected index for member
-            string name = showMemberComboBox.Text;
-            int selectedMember = showMemberComboBox.SelectedIndex;
-            string selectedMemberName = showMemberComboBox.Items[selectedMember].ToString();
-            int indexInMemberList = SearchMoviesByName(selectedMemberName);
-            name = char.ToUpper(name[0]) + name.Substring(1);
-
-            //This will create a List will all the movies containing what the user entered in the searchTextBox
-            var searchMemberName = memberList.Find(x => x.Name.ToLower().Contains(showMemberComboBox.Text.ToLower()));
-            //If the member isn't in a movie, this if statement will modify the information for the member only
-            if (!movieList.Exists(x => x.Member.Exists(y => y.Name == name)))
+            //If the input is in a correct format and in the boundaries, it will pass through the if statement
+            if (CheckIfMemberIsOk() == true)
             {
-                //Created a new Member object
-                Member aMember = new Member();
-                aMember.Name = memberNameTextBox.Text;
-                aMember.Dob = DateTime.Parse(dobTextBox.Text);
-                if (typeComboBox.Text == "Actor")
+                if (memberNameTextBox.TextLength >= 3)
                 {
-                    aMember.MemberType = 1;
-                }
-                else if (typeComboBox.Text == "Director")
-                {
-                    aMember.MemberType = 2;
-                }
-                else if (typeComboBox.Text == "Producer")
-                {
-                    aMember.MemberType = 3;
-                }
-                else if (typeComboBox.Text == "Director of photography")
-                {
-                    aMember.MemberType = 4;
-                }
-                //Modify the member object in the showMemberComboBox
-                showMemberComboBox.Items.RemoveAt(selectedMember);
-                showMemberComboBox.Items.Insert(selectedMember, aMember.Name);
+                    //Get the selected index for member
+                    string name = showMemberComboBox.Text;
+                    string dob = dobTextBox.Text;
+                    int selectedMember = showMemberComboBox.SelectedIndex;
+                    string selectedMemberName = showMemberComboBox.Items[selectedMember].ToString();
+                    int indexInMemberList = SearchMoviesByName(selectedMemberName);
 
-                //Modify the member object in the memberList
-                memberList.RemoveAt(indexInMemberList);
-                MessageBox.Show(memberList.Count.ToString());
-                memberList.Insert(indexInMemberList, aMember);
-                MessageBox.Show(memberList.Count.ToString());
+                    string newName = memberNameTextBox.Text;
+                    // Creates a TextInfo based on the "en-US" culture.
+                    TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+                    newName = myTI.ToTitleCase(newName);
 
-                //Clear the appropriate textbox
-                ClearTheTextBoxes();
-                movieListView.Items.Clear();
-            }
-            else
-            {
-                foreach (Movie m in movieList)
-                {
-                    for (int i = 0; i < m.Member.Count; i++)
+                    //This will create a List will all the movies containing what the user entered in the searchTextBox
+                    var searchMemberName = memberList.FindAll(x => x.Name.ToLower().Contains(showMemberComboBox.Text.ToLower()));
+                    //If the member isn't in a movie, this if statement will modify the information for the member only
+                    if (!movieList.Exists(x => x.Member.Exists(y => y.Name == name)))
                     {
-                        if (searchMemberName.Name == m.Member[i].Name)
+                        searchMemberName.ForEach(x => { x.Name = newName; x.Dob = DateTime.Parse(dobTextBox.Text);
+                        if (typeComboBox.Text == "Actor")
                         {
-                            //Created a new Member object
-                            Member aMember = new Member();
-                            aMember.Name = memberNameTextBox.Text;
-                            aMember.Dob = DateTime.Parse(dobTextBox.Text);
-                            if (typeComboBox.Text == "Actor")
-                            {
-                                aMember.MemberType = 1;
-                            }
-                            else if (typeComboBox.Text == "Director")
-                            {
-                                aMember.MemberType = 2;
-                            }
-                            else if (typeComboBox.Text == "Producer")
-                            {
-                                aMember.MemberType = 3;
-                            }
-                            else if (typeComboBox.Text == "Director of photography")
-                            {
-                                aMember.MemberType = 4;
-                            }
+                                x.MemberType = 1;
+                        }
+                        else if (typeComboBox.Text == "Director")
+                        {
+                                x.MemberType = 2;
+                        }
+                        else if (typeComboBox.Text == "Producer")
+                        {
+                                x.MemberType = 3;
+                        }
+                        else if (typeComboBox.Text == "Director of photography")
+                        {
+                                x.MemberType = 4;
+                        }
+                        });
+                        //Modify the member object in the showMemberComboBox
+                        showMemberComboBox.Items.Clear();
+                        foreach (Member m in memberList)
+                        {
+                            showMemberComboBox.Items.Add(m.Name);
+                        }
 
-                            //Modify the member object in the movie
-                            m.Member.RemoveAt(i);
-                            m.Member.Insert(i, aMember);
+                        //Update the member in the db
+                        //UpdateMemberInDB(searchMemberName);
 
-                            //Modify the member object in the showMemberComboBox
-                            showMemberComboBox.Items.RemoveAt(selectedMember);
-                            showMemberComboBox.Items.Insert(selectedMember, aMember.Name);
+                        //Clear the appropriate textbox
+                        ClearTheTextBoxes();
+                        movieListView.Items.Clear();
+                    }
+                    else
+                    {
+                        foreach (Movie m in movieList)
+                        {
+                            for (int i = 0; i < m.Member.Count; i++)
+                            {
+                                if (searchMemberName.Exists(x => x.ID == m.Member[i].ID))
+                                {
+                                    if (DateTime.TryParse(dob, out DateTime DateValue))
+                                    {
+                                        m.Member[i].Name = newName;
+                                        m.Member[i].Dob = DateValue;
 
-                            //Modify the member object in the memberList
-                            memberList.RemoveAt(indexInMemberList);
-                            memberList.Insert(indexInMemberList, aMember);
+                                        if (typeComboBox.Text == "Actor")
+                                        {
+                                            m.Member[i].MemberType = 1;
+                                        }
+                                        else if (typeComboBox.Text == "Director")
+                                        {
+                                            m.Member[i].MemberType = 2;
+                                        }
+                                        else if (typeComboBox.Text == "Producer")
+                                        {
+                                            m.Member[i].MemberType = 3;
+                                        }
+                                        else if (typeComboBox.Text == "Director of photography")
+                                        {
+                                            m.Member[i].MemberType = 4;
+                                        }
+                                        //Modify the member object in the emberList
+                                        memberList.RemoveAt(indexInMemberList);
+                                        memberList.Insert(indexInMemberList, m.Member[i]);
 
-                            //Clear the appropriate textbox
-                            ClearTheTextBoxes();
-                            movieListView.Items.Clear();
+                                        //Modify the member object in the movie
+                                        m.Member.RemoveAt(i);
+                                        m.Member.Insert(i, m.Member[i]);
+
+                                        //Modify the member object in the showMemberComboBox
+                                        showMemberComboBox.Items.RemoveAt(selectedMember);
+                                        showMemberComboBox.Items.Insert(selectedMember, m.Member[i].Name);
+
+                                        //Update the movie in the db
+                                        //UpdateMovieInDB(m);
+                                        //Update the member in the db
+                                        //UpdateMemberInDB(searchMemberName);
+
+                                        //Clear the appropriate textbox
+                                        ClearTheTextBoxes();
+                                        movieListView.Items.Clear();
+                                    }
+                                    else
+                                    {
+                                        //Error message
+                                        MessageBox.Show("The Date of birth was not in the correct format");
+                                    }
+                                }
+                            }
                         }
                     }
+                }
+                else
+                {
+                    //Error message
+                    MessageBox.Show("Please enter at least 3 letters");
                 }
             }
         }
@@ -1626,7 +1943,7 @@ namespace DBMoviesManager
                     dobTextBox.Clear();
                     typeComboBox.Text = "";
 
-                    //Get the selected indexes for movies and genre
+                    //Get the selected indexes for movies and member
                     int selectedMember = memberListBox.SelectedIndex;
                     int selectedMovie = movieListView.SelectedIndices[0];
 
@@ -1636,6 +1953,9 @@ namespace DBMoviesManager
                         //Delete the item in question from movieList
                         movieList[selectedMovie].Member.RemoveAt(selectedMember);
 
+                        //Update the movie in the db
+                        //UpdateMovieInDB(movieList[selectedMovie]);
+                        
                         //Update the form information
                         UpdateInfo();
                     }
@@ -1670,7 +1990,7 @@ namespace DBMoviesManager
 
         private void MemberListBox_Click(object sender, EventArgs e)
         {
-            //Make the genre controls visible within the form
+            //Make the member controls visible within the form
             memberNameLabel.Visible = true;
             memberNameTextBox.Visible = true;
             addMemberButton.Visible = true;
@@ -1678,6 +1998,7 @@ namespace DBMoviesManager
             MakeGenreInvisible();
             //Clear the selected item from the genreListBox to avoid confusion for the user
             genreListBox.ClearSelected();
+            memberNameTextBox.Text = "";
         }
 
         private void DobTextBox_Click(object sender, EventArgs e)
@@ -1686,6 +2007,11 @@ namespace DBMoviesManager
         }
 
         private void MemberListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GenreListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

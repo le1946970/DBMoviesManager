@@ -51,7 +51,6 @@
             this.addMemberButton = new System.Windows.Forms.Button();
             this.modifyMemberButton = new System.Windows.Forms.Button();
             this.deleteMemberButton = new System.Windows.Forms.Button();
-            this.saveExitButton = new System.Windows.Forms.Button();
             this.memberNameLabel = new System.Windows.Forms.Label();
             this.dobLabel = new System.Windows.Forms.Label();
             this.memberNameTextBox = new System.Windows.Forms.TextBox();
@@ -298,16 +297,6 @@
             this.deleteMemberButton.UseVisualStyleBackColor = true;
             this.deleteMemberButton.Click += new System.EventHandler(this.DeleteMemberButton_Click);
             // 
-            // saveExitButton
-            // 
-            this.saveExitButton.Location = new System.Drawing.Point(1101, 469);
-            this.saveExitButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.saveExitButton.Name = "saveExitButton";
-            this.saveExitButton.Size = new System.Drawing.Size(147, 31);
-            this.saveExitButton.TabIndex = 81;
-            this.saveExitButton.Text = "Save and exit";
-            this.saveExitButton.UseVisualStyleBackColor = true;
-            // 
             // memberNameLabel
             // 
             this.memberNameLabel.AutoSize = true;
@@ -342,7 +331,7 @@
             this.dobTextBox.Name = "dobTextBox";
             this.dobTextBox.Size = new System.Drawing.Size(145, 22);
             this.dobTextBox.TabIndex = 88;
-            this.dobTextBox.Text = "dd/mm/yyyy";
+            this.dobTextBox.Text = "mm/dd/yyyy";
             this.dobTextBox.Click += new System.EventHandler(this.DobTextBox_Click);
             // 
             // typeLabel
@@ -488,6 +477,7 @@
             this.genreListBox.Size = new System.Drawing.Size(147, 52);
             this.genreListBox.TabIndex = 111;
             this.genreListBox.Click += new System.EventHandler(this.genreListBox_Click);
+            this.genreListBox.SelectedIndexChanged += new System.EventHandler(this.GenreListBox_SelectedIndexChanged);
             // 
             // memberListBox
             // 
@@ -535,7 +525,6 @@
             this.Controls.Add(this.memberNameTextBox);
             this.Controls.Add(this.dobLabel);
             this.Controls.Add(this.memberNameLabel);
-            this.Controls.Add(this.saveExitButton);
             this.Controls.Add(this.deleteMemberButton);
             this.Controls.Add(this.modifyMemberButton);
             this.Controls.Add(this.addMemberButton);
@@ -592,7 +581,6 @@
         private System.Windows.Forms.Button addMemberButton;
         private System.Windows.Forms.Button modifyMemberButton;
         private System.Windows.Forms.Button deleteMemberButton;
-        private System.Windows.Forms.Button saveExitButton;
         private System.Windows.Forms.Label memberNameLabel;
         private System.Windows.Forms.Label dobLabel;
         private System.Windows.Forms.TextBox memberNameTextBox;
