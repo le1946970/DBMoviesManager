@@ -477,7 +477,6 @@
             this.genreListBox.Size = new System.Drawing.Size(147, 52);
             this.genreListBox.TabIndex = 111;
             this.genreListBox.Click += new System.EventHandler(this.genreListBox_Click);
-            this.genreListBox.SelectedIndexChanged += new System.EventHandler(this.GenreListBox_SelectedIndexChanged);
             // 
             // memberListBox
             // 
@@ -489,7 +488,6 @@
             this.memberListBox.Size = new System.Drawing.Size(147, 52);
             this.memberListBox.TabIndex = 112;
             this.memberListBox.Click += new System.EventHandler(this.MemberListBox_Click);
-            this.memberListBox.SelectedIndexChanged += new System.EventHandler(this.MemberListBox_SelectedIndexChanged);
             // 
             // memberLabel
             // 

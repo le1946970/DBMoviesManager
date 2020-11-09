@@ -2005,15 +2005,5 @@ namespace DBMoviesManager
         {
             dobTextBox.Text = "";
         }
-
-        private void MemberListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GenreListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
