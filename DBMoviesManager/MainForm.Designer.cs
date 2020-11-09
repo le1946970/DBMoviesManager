@@ -266,7 +266,7 @@
             // 
             // addMemberButton
             // 
-            this.addMemberButton.Location = new System.Drawing.Point(328, 158);
+            this.addMemberButton.Location = new System.Drawing.Point(327, 356);
             this.addMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addMemberButton.Name = "addMemberButton";
             this.addMemberButton.Size = new System.Drawing.Size(147, 33);
@@ -277,7 +277,7 @@
             // 
             // modifyMemberButton
             // 
-            this.modifyMemberButton.Location = new System.Drawing.Point(328, 196);
+            this.modifyMemberButton.Location = new System.Drawing.Point(327, 394);
             this.modifyMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.modifyMemberButton.Name = "modifyMemberButton";
             this.modifyMemberButton.Size = new System.Drawing.Size(147, 34);
@@ -288,7 +288,7 @@
             // 
             // deleteMemberButton
             // 
-            this.deleteMemberButton.Location = new System.Drawing.Point(328, 236);
+            this.deleteMemberButton.Location = new System.Drawing.Point(327, 434);
             this.deleteMemberButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteMemberButton.Name = "deleteMemberButton";
             this.deleteMemberButton.Size = new System.Drawing.Size(147, 33);
@@ -300,7 +300,7 @@
             // memberNameLabel
             // 
             this.memberNameLabel.AutoSize = true;
-            this.memberNameLabel.Location = new System.Drawing.Point(251, 57);
+            this.memberNameLabel.Location = new System.Drawing.Point(250, 255);
             this.memberNameLabel.Name = "memberNameLabel";
             this.memberNameLabel.Size = new System.Drawing.Size(49, 17);
             this.memberNameLabel.TabIndex = 82;
@@ -309,7 +309,7 @@
             // dobLabel
             // 
             this.dobLabel.AutoSize = true;
-            this.dobLabel.Location = new System.Drawing.Point(247, 89);
+            this.dobLabel.Location = new System.Drawing.Point(246, 287);
             this.dobLabel.Name = "dobLabel";
             this.dobLabel.Size = new System.Drawing.Size(56, 34);
             this.dobLabel.TabIndex = 83;
@@ -318,7 +318,7 @@
             // 
             // memberNameTextBox
             // 
-            this.memberNameTextBox.Location = new System.Drawing.Point(328, 54);
+            this.memberNameTextBox.Location = new System.Drawing.Point(327, 252);
             this.memberNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.memberNameTextBox.Name = "memberNameTextBox";
             this.memberNameTextBox.Size = new System.Drawing.Size(145, 22);
@@ -326,7 +326,7 @@
             // 
             // dobTextBox
             // 
-            this.dobTextBox.Location = new System.Drawing.Point(328, 92);
+            this.dobTextBox.Location = new System.Drawing.Point(327, 290);
             this.dobTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dobTextBox.Name = "dobTextBox";
             this.dobTextBox.Size = new System.Drawing.Size(145, 22);
@@ -337,7 +337,7 @@
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(251, 129);
+            this.typeLabel.Location = new System.Drawing.Point(250, 327);
             this.typeLabel.Name = "typeLabel";
             this.typeLabel.Size = new System.Drawing.Size(44, 17);
             this.typeLabel.TabIndex = 94;
@@ -351,7 +351,7 @@
             "Director",
             "Producer",
             "Director of photography"});
-            this.typeComboBox.Location = new System.Drawing.Point(328, 126);
+            this.typeComboBox.Location = new System.Drawing.Point(327, 324);
             this.typeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(145, 24);
@@ -401,7 +401,7 @@
             // 
             // genreNameTextBox
             // 
-            this.genreNameTextBox.Location = new System.Drawing.Point(328, 277);
+            this.genreNameTextBox.Location = new System.Drawing.Point(329, 54);
             this.genreNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.genreNameTextBox.Name = "genreNameTextBox";
             this.genreNameTextBox.Size = new System.Drawing.Size(145, 22);
@@ -410,7 +410,7 @@
             // genreNameLabel
             // 
             this.genreNameLabel.AutoSize = true;
-            this.genreNameLabel.Location = new System.Drawing.Point(251, 281);
+            this.genreNameLabel.Location = new System.Drawing.Point(252, 58);
             this.genreNameLabel.Name = "genreNameLabel";
             this.genreNameLabel.Size = new System.Drawing.Size(49, 17);
             this.genreNameLabel.TabIndex = 103;
@@ -419,7 +419,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(239, 318);
+            this.descriptionLabel.Location = new System.Drawing.Point(240, 95);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(83, 17);
             this.descriptionLabel.TabIndex = 104;
@@ -428,7 +428,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(328, 315);
+            this.descriptionTextBox.Location = new System.Drawing.Point(329, 92);
             this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(145, 22);
@@ -436,7 +436,7 @@
             // 
             // deleteGenreButton
             // 
-            this.deleteGenreButton.Location = new System.Drawing.Point(328, 428);
+            this.deleteGenreButton.Location = new System.Drawing.Point(329, 205);
             this.deleteGenreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.deleteGenreButton.Name = "deleteGenreButton";
             this.deleteGenreButton.Size = new System.Drawing.Size(147, 33);
@@ -447,7 +447,7 @@
             // 
             // modifyGenreButton
             // 
-            this.modifyGenreButton.Location = new System.Drawing.Point(328, 388);
+            this.modifyGenreButton.Location = new System.Drawing.Point(329, 165);
             this.modifyGenreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.modifyGenreButton.Name = "modifyGenreButton";
             this.modifyGenreButton.Size = new System.Drawing.Size(147, 34);
@@ -458,7 +458,7 @@
             // 
             // addGenreButton
             // 
-            this.addGenreButton.Location = new System.Drawing.Point(328, 350);
+            this.addGenreButton.Location = new System.Drawing.Point(329, 127);
             this.addGenreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addGenreButton.Name = "addGenreButton";
             this.addGenreButton.Size = new System.Drawing.Size(147, 33);
@@ -502,7 +502,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1275, 513);
+            this.ClientSize = new System.Drawing.Size(1272, 513);
             this.Controls.Add(this.memberLabel);
             this.Controls.Add(this.memberListBox);
             this.Controls.Add(this.genreListBox);

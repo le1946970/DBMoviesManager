@@ -387,6 +387,30 @@ namespace DBMoviesManager
 
             queryResult = dbCommand.ExecuteNonQuery();
 
+            dbCommand.Dispose();
+
+            //After executing the query(ies) in the db, the connection must be closed
+            dbConnection.Close();
+
+            return queryResult;
+        }
+        private int DeleteJTMovieMemberFromDB(int movieID, int memberID)
+        {
+            //This variable will store the number of affecter rows by the INSERT query
+            int queryResult;
+
+            //Before sending commands to the database, the connection must be opened
+            dbConnection.Open();
+
+            string sqlQuery = "DELETE ";
+
+            //This is the actual SQL containing the query to be executed
+            NpgsqlCommand dbCommand = new NpgsqlCommand(sqlQuery, dbConnection);
+
+            queryResult = dbCommand.ExecuteNonQuery();
+
+            dbCommand.Dispose();
+
             //After executing the query(ies) in the db, the connection must be closed
             dbConnection.Close();
 
@@ -957,8 +981,8 @@ namespace DBMoviesManager
                                     genreList.Insert(indexInGenreList, m.Genre[i]);
 
                                     //Modify the genre object in the movie
-                                    m.Genre.RemoveAt(i);
                                     m.Genre.Insert(i, m.Genre[i]);
+                                    m.Genre.RemoveAt(i + 1);
 
                                     //Modify the genre object in the showGenreComboBox
                                     showGenreComboBox.Items.Clear();
@@ -1014,6 +1038,10 @@ namespace DBMoviesManager
                     //Update the form information
                     UpdateInfo();
                 }
+                else
+                {
+                    MessageBox.Show("Please select a genre to remove");
+                }
             }
             else
             {
@@ -1024,21 +1052,36 @@ namespace DBMoviesManager
 
                 //This will create a List will all the movies containing what the user entered in the searchTextBox
                 var searchGenreName = genreList.Find(x => x.Name.ToLower().Contains(showGenreComboBox.Text.ToLower()));
-                foreach (Movie m in movieList)
+
+                if (!movieList.Exists(x => x.Genre.Exists(y => y.Name == searchGenreName.Name)))
                 {
-                    for (int i = 0; i < m.Genre.Count; i++)
+                    if (showGenreComboBox.Items.Contains(searchGenreName.Name))
                     {
-                        if (searchGenreName.Name == m.Genre[i].Name)
+                        showGenreComboBox.Items.RemoveAt(selectedGenre);
+                    }
+                    genreList.RemoveAt(indexInGenreList);
+                    //Clear the appropriate textbox
+                    ClearTheTextBoxes();
+                    movieListView.Items.Clear();
+                }
+                else
+                {
+                    foreach (Movie m in movieList)
+                    {
+                        for (int i = 0; i < m.Genre.Count; i++)
                         {
-                            if (showGenreComboBox.Items.Contains(m.Genre[i].Name))
+                            if (searchGenreName.Name == m.Genre[i].Name)
                             {
-                                showGenreComboBox.Items.RemoveAt(selectedGenre);
+                                if (showGenreComboBox.Items.Contains(m.Genre[i].Name))
+                                {
+                                    showGenreComboBox.Items.RemoveAt(selectedGenre);
+                                }
+                                m.Genre.RemoveAt(i);
+                                genreList.RemoveAt(indexInGenreList);
+                                //Clear the appropriate textbox
+                                ClearTheTextBoxes();
+                                movieListView.Items.Clear();
                             }
-                            m.Genre.RemoveAt(i);
-                            genreList.RemoveAt(indexInGenreList);
-                            //Clear the appropriate textbox
-                            ClearTheTextBoxes();
-                            movieListView.Items.Clear();
                         }
                     }
                 }
@@ -1047,8 +1090,6 @@ namespace DBMoviesManager
 
         private void addGenreButton_Click(object sender, EventArgs e)
         {
-            string name = genreNameTextBox.Text;
-            name = char.ToUpper(name[0]) + name.Substring(1);
             if (movieListView.SelectedIndices.Count > 0)
             {
                 if (movieListView.SelectedIndices.Count <= 0)
@@ -1114,6 +1155,8 @@ namespace DBMoviesManager
                 //If the input is in a correct format and in the boundaries, it will pass through the if statement
                 if (CheckIfGenreIsOk() == true)
                 {
+                    string name = genreNameTextBox.Text;
+                    name = char.ToUpper(name[0]) + name.Substring(1);
                     if (genreNameTextBox.TextLength >= 3)
                     {
                         if (!genreList.Exists(x => x.Name == name))
@@ -1630,12 +1673,6 @@ namespace DBMoviesManager
 
         private void AddMemberButton_Click(object sender, EventArgs e)
         {
-            string dob = dobTextBox.Text;
-            string name = memberNameTextBox.Text;
-            // Creates a TextInfo based on the "en-US" culture.
-            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-            name = myTI.ToTitleCase(name);
-
             if (movieListView.SelectedIndices.Count > 0)
             {
                 if (movieListView.SelectedIndices.Count <= 0)
@@ -1701,6 +1738,12 @@ namespace DBMoviesManager
                 //If the input is in a correct format and in the boundaries, it will pass through the if statement
                 if (CheckIfMemberIsOk() == true)
                 {
+                    string dob = dobTextBox.Text;
+                    string name = memberNameTextBox.Text;
+                    // Creates a TextInfo based on the "en-US" culture.
+                    TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+                    name = myTI.ToTitleCase(name);
+
                     if (memberNameTextBox.TextLength >= 3)
                     {
                         if (!memberList.Exists(x => x.Name == name))
@@ -1820,7 +1863,7 @@ namespace DBMoviesManager
                     string dob = dobTextBox.Text;
                     int selectedMember = showMemberComboBox.SelectedIndex;
                     string selectedMemberName = showMemberComboBox.Items[selectedMember].ToString();
-                    int indexInMemberList = SearchMoviesByName(selectedMemberName);
+                    int indexInMemberList = SearchByMember(selectedMemberName);
 
                     string newName = memberNameTextBox.Text;
                     // Creates a TextInfo based on the "en-US" culture.
@@ -1830,7 +1873,7 @@ namespace DBMoviesManager
                     //This will create a List will all the movies containing what the user entered in the searchTextBox
                     var searchMemberName = memberList.FindAll(x => x.Name.ToLower().Contains(showMemberComboBox.Text.ToLower()));
                     //If the member isn't in a movie, this if statement will modify the information for the member only
-                    if (!movieList.Exists(x => x.Member.Exists(y => y.Name == name)))
+                    if (!movieList.Exists(z => z.Member.Exists(y => y.Name == name)))
                     {
                         searchMemberName.ForEach(x => { x.Name = newName; x.Dob = DateTime.Parse(dobTextBox.Text);
                         if (typeComboBox.Text == "Actor")
@@ -1893,17 +1936,18 @@ namespace DBMoviesManager
                                         {
                                             m.Member[i].MemberType = 4;
                                         }
+
                                         //Modify the member object in the emberList
                                         memberList.RemoveAt(indexInMemberList);
                                         memberList.Insert(indexInMemberList, m.Member[i]);
 
                                         //Modify the member object in the movie
-                                        m.Member.RemoveAt(i);
                                         m.Member.Insert(i, m.Member[i]);
+                                        m.Member.RemoveAt(i + 1);
 
                                         //Modify the member object in the showMemberComboBox
-                                        showMemberComboBox.Items.RemoveAt(selectedMember);
                                         showMemberComboBox.Items.Insert(selectedMember, m.Member[i].Name);
+                                        showMemberComboBox.Items.RemoveAt(selectedMember + 1);
 
                                         //Update the movie in the db
                                         //UpdateMovieInDB(m);
@@ -1947,17 +1991,40 @@ namespace DBMoviesManager
                     int selectedMember = memberListBox.SelectedIndex;
                     int selectedMovie = movieListView.SelectedIndices[0];
 
+                    string selectedMemberName = memberListBox.Items[selectedMember].ToString();
+                    string memberNameLabel = memberNameTextBox.Text;
+
                     //If an item is selected,
                     if (selectedMember > -1)
                     {
                         //Delete the item in question from movieList
                         movieList[selectedMovie].Member.RemoveAt(selectedMember);
 
-                        //Update the movie in the db
-                        //UpdateMovieInDB(movieList[selectedMovie]);
-                        
+                        MessageBox.Show(selectedMemberName + " has been deleted from this movie");
+
                         //Update the form information
                         UpdateInfo();
+                        /*
+                        //Update the movie in the db
+                        if (DeleteJTMovieMemberFromDB(movieList[selectedMovie].ID, movieList[selectedMovie].Member[selectedMember].ID) != 0)
+                        {
+                            //Delete the item in question from movieList
+                            movieList[selectedMovie].Member.RemoveAt(selectedMember);
+
+                            MessageBox.Show(selectedMemberName + " has been deleted from this movie");
+
+                            //Update the form information
+                            UpdateInfo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("The member was not deleted from the movie");
+                        }*/
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Please select a member to remove");
                     }
                 }
             }
@@ -1970,18 +2037,32 @@ namespace DBMoviesManager
 
                 //This will create a List will all the movies containing what the user entered in the searchTextBox
                 var searchMemberName = memberList.Find(x => x.Name.ToLower().Contains(showMemberComboBox.Text.ToLower()));
-                foreach (Movie m in movieList)
+
+                if (!movieList.Exists(x => x.Member.Exists(y => y.Name == searchMemberName.Name)))
                 {
-                    for (int i = 0; i < m.Member.Count; i++)
+                    showMemberComboBox.Items.RemoveAt(selectedMember);
+                    memberList.RemoveAt(indexInMemberList);
+
+                    //Clear the appropriate textbox
+                    ClearTheTextBoxes();
+                    movieListView.Items.Clear();
+                }
+                else
+                {
+                    foreach (Movie m in movieList)
                     {
-                        if (searchMemberName.Name == m.Member[i].Name)
+                        for (int i = 0; i < m.Member.Count; i++)
                         {
-                            m.Member.RemoveAt(i);
-                            showMemberComboBox.Items.RemoveAt(selectedMember);
-                            memberList.RemoveAt(indexInMemberList);
-                            //Clear the appropriate textbox
-                            ClearTheTextBoxes();
-                            movieListView.Items.Clear();
+                            if (searchMemberName.ID == m.Member[i].ID)
+                            {
+
+                                m.Member.RemoveAt(i);
+                                showMemberComboBox.Items.RemoveAt(selectedMember);
+                                memberList.RemoveAt(indexInMemberList);
+                                //Clear the appropriate textbox
+                                ClearTheTextBoxes();
+                                movieListView.Items.Clear();
+                            }
                         }
                     }
                 }
